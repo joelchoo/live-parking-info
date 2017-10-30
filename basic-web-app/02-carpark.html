@@ -1,0 +1,39 @@
+<body>
+  <script src="https://unpkg.com/vue"></script>
+  <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+
+  <div id="app">
+    <input v-model="postcodeInput" @keyup.enter="searchPostcode"><br>
+    {{ postcodeInput }}<br>
+    {{ x }}<br>
+    {{ y }}
+  </div>
+</body>
+
+<script>
+var app = new Vue({
+  el: '#app',
+  data: {
+    x: undefined,
+    y: undefined,
+    postcodeInput: ""
+  },
+  methods: {
+    searchPostcode: function() {
+      axios.get('https://developers.onemap.sg/commonapi/search', {
+        params: {
+          searchVal: this.postcodeInput,
+          returnGeom: "Y",
+          getAddrDetails: "N"
+        }
+      }).then(response => {
+        let unwrappedResults = response.data.results[0]
+        this.x = unwrappedResults.X
+        this.y = unwrappedResults.Y
+      })
+
+      this.postcodeInput = ""
+    }
+  }
+})
+</script>

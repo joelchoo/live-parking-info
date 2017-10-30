@@ -1,0 +1,100 @@
+<body>
+  <script src="https://unpkg.com/vue"></script>
+  <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+
+  <div id="app">
+    <input v-model="postcodeInput" @keyup.enter="searchPostcode"><br>
+
+    <h3 v-if="carparks.length > 0">Carparks:</h3>
+    <div v-for="carpark in carparks">
+      Distance: {{ Math.ceil(carpark.distance) }}m<br>
+      Address: {{ carpark.carpark.address }} <br>
+      Total Lots: {{ carpark.carpark.total_lots || "N/A" }} <br>
+      Lots Available: {{ carpark.carpark.lots_available || "N/A" }} <br>
+      <br>
+    </div>
+  </div>
+</body>
+
+<script>
+var app = new Vue({
+  el: '#app',
+  data: {
+    carparks: [],
+    postcodeInput: ""
+  },
+  methods: {
+    searchPostcode: function() {
+      axios.get('https://developers.onemap.sg/commonapi/search', {
+        params: {
+          searchVal: this.postcodeInput,
+          returnGeom: "Y",
+          getAddrDetails: "N"
+        }
+      }).then(response => {
+        let unwrappedResults = response.data.results[0]
+        x = parseFloat(unwrappedResults.X)
+        y = parseFloat(unwrappedResults.Y)
+        this.updateCarparkList(x, y)
+      })
+
+      this.postcodeInput = ""
+    },
+
+    updateCarparkList: function(x, y) {
+      axios.get("https://data.gov.sg/api/action/datastore_search?resource_id=139a3035-e624-4f56-b63f-89ae28d4ae4c", {}).then(response => {
+        carparks = response.data.result.records
+        carparks_with_distances = []
+
+        for (var carpark of carparks) {
+          x2 = Math.pow((parseFloat(carpark.x_coord) - x), 2)
+          y2 = Math.pow((parseFloat(carpark.y_coord) - y),2)
+          distance = Math.sqrt(x2 + y2)
+          carparks_with_distances.push({
+            distance: distance,
+            carpark: carpark
+          })
+        }
+
+        // https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/sort
+        // See the compareNumbers function
+        function compare_carparks_by_distance(carpark1, carpark2) {
+          return carpark1.distance - carpark2.distance
+        }
+
+        carparks_with_distances.sort(compare_carparks_by_distance)
+        carparks_with_distances = carparks_with_distances.slice(0, 10)
+        this.getLotInfo(carparks_with_distances)
+      })
+    },
+
+    getLotInfo: function(carparks) {
+      axios.get("https://api.data.gov.sg/v1/transport/carpark-availability", {
+        headers: {
+          "api-key": "YOUR_API_KEY"
+        }
+      }).then(response => {
+        carpark_availability = response.data.items[0].carpark_data
+
+        // Match carpark_number in carpark_availability with car_park_no in carparks
+        for (let carpark_av of carpark_availability) {
+          let carpark_av_number = carpark_av.carpark_number
+          let matched_carpark = null
+          for (let carpark_info of carparks) {
+            if (carpark_info.carpark.car_park_no === carpark_av_number) {
+              matched_carpark = carpark_info
+              break
+            }
+          }
+          if (matched_carpark !== null) {
+            matched_carpark.carpark.total_lots = carpark_av.carpark_info[0].total_lots
+            matched_carpark.carpark.lots_available = carpark_av.carpark_info[0].lots_available
+          }
+        }
+
+        this.carparks = carparks
+      })
+    }
+  }
+})
+</script>

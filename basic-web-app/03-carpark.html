@@ -1,0 +1,67 @@
+<body>
+  <script src="https://unpkg.com/vue"></script>
+  <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+
+  <div id="app">
+    <input v-model="postcodeInput" @keyup.enter="searchPostcode"><br>
+
+    <h3>Carparks:</h3>
+    <div v-for="carpark in carparks">
+      {{ carpark }}
+    </div>
+  </div>
+</body>
+
+<script>
+var app = new Vue({
+  el: '#app',
+  data: {
+    carparks: [],
+    postcodeInput: ""
+  },
+  methods: {
+    searchPostcode: function() {
+      axios.get('https://developers.onemap.sg/commonapi/search', {
+        params: {
+          searchVal: this.postcodeInput,
+          returnGeom: "Y",
+          getAddrDetails: "N"
+        }
+      }).then(response => {
+        let unwrappedResults = response.data.results[0]
+        x = parseFloat(unwrappedResults.X)
+        y = parseFloat(unwrappedResults.Y)
+        this.updateCarparkList(x, y)
+      })
+
+      this.postcodeInput = ""
+    },
+
+    updateCarparkList: function(x, y) {
+      axios.get("https://data.gov.sg/api/action/datastore_search?resource_id=139a3035-e624-4f56-b63f-89ae28d4ae4c", {}).then(response => {
+        carparks = response.data.result.records
+        carparks_with_distances = []
+
+        for (let carpark of carparks) {
+          x2 = Math.pow((parseFloat(carpark.x_coord) - x), 2)
+          y2 = Math.pow((parseFloat(carpark.y_coord) - y),2)
+          distance = Math.sqrt(x2 + y2)
+          carparks_with_distances.push({
+            distance: distance,
+            carpark: carpark
+          })
+        }
+
+        // https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/sort
+        // See the compareNumbers function
+        function compare_carparks_by_distance(carpark1, carpark2) {
+          return carpark1.distance - carpark2.distance
+        }
+
+        carparks_with_distances.sort(compare_carparks_by_distance)
+        this.carparks = carparks_with_distances.slice(0,10)
+      })
+    }
+  }
+})
+</script>
