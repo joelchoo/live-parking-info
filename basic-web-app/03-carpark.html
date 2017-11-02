@@ -28,7 +28,7 @@ var app = new Vue({
           getAddrDetails: "N"
         }
       }).then(response => {
-        let unwrappedResults = response.data.results[0]
+        var unwrappedResults = response.data.results[0]
         x = parseFloat(unwrappedResults.X)
         y = parseFloat(unwrappedResults.Y)
         this.updateCarparkList(x, y)
@@ -39,12 +39,12 @@ var app = new Vue({
 
     updateCarparkList: function(x, y) {
       axios.get("https://data.gov.sg/api/action/datastore_search?resource_id=139a3035-e624-4f56-b63f-89ae28d4ae4c", {}).then(response => {
-        carparks = response.data.result.records
-        carparks_with_distances = []
+        var carparks = response.data.result.records
+        var carparks_with_distances = []
 
-        for (let carpark of carparks) {
+        for (var carpark of carparks) {
           x2 = Math.pow((parseFloat(carpark.x_coord) - x), 2)
-          y2 = Math.pow((parseFloat(carpark.y_coord) - y),2)
+          y2 = Math.pow((parseFloat(carpark.y_coord) - y), 2)
           distance = Math.sqrt(x2 + y2)
           carparks_with_distances.push({
             distance: distance,

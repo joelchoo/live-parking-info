@@ -27,7 +27,7 @@ var app = new Vue({
           getAddrDetails: "N"
         }
       }).then(response => {
-        let unwrappedResults = response.data.results[0]
+        var unwrappedResults = response.data.results[0]
         this.x = unwrappedResults.X
         this.y = unwrappedResults.Y
       })
