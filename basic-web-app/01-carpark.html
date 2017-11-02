@@ -1,17 +1,17 @@
 <body>
   <script src="https://unpkg.com/vue"></script>
 
-  <div id="app">
-    <input v-model="postcodeInput"><br>
-    {{ postcodeInput }}
+  <div id="myParkingApp">
+    <input v-model="postcode"><br> 
+    {{ postcode }}
   </div>
 </body>
 
 <script>
-var app = new Vue({
-  el: '#app',
+new Vue({
+  el: '#myParkingApp',
   data: {
-    postcodeInput: ""
+    postcode: ""
   }
 })
 </script>

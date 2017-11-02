@@ -2,8 +2,8 @@
   <script src="https://unpkg.com/vue"></script>
   <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
 
-  <div id="app">
-    <input v-model="postcodeInput" @keyup.enter="searchPostcode"><br>
+  <div id="myParkingApp">
+    <input v-model="postcode" @keyup.enter="searchPostcode"><br>
 
     <h3 v-if="carparks.length > 0">Carparks:</h3>
     <div v-for="carpark in carparks">
@@ -17,8 +17,8 @@
 </body>
 
 <script>
-var app = new Vue({
-  el: '#app',
+new Vue({
+  el: '#myParkingApp',
   data: {
     carparks: [],
     postcodeInput: ""
@@ -33,12 +33,10 @@ var app = new Vue({
         }
       }).then(response => {
         var unwrappedResults = response.data.results[0]
-        x = parseFloat(unwrappedResults.X)
-        y = parseFloat(unwrappedResults.Y)
-        this.updateCarparkList(x, y)
+        var postcodeX = parseFloat(unwrappedResults.X)
+        var postcodeY = parseFloat(unwrappedResults.Y)
+        this.updateCarparkList(postcodeX, postcodeY)
       })
-
-      this.postcodeInput = ""
     },
 
     updateCarparkList: function(x, y) {
@@ -61,7 +59,7 @@ var app = new Vue({
     getLotInfo: function(carparks) {
       axios.get("https://api.data.gov.sg/v1/transport/carpark-availability", {
         headers: {
-          "api-key": "BJbL0ikKbXEkALqZ0taZ0Nsu5AUjp4hd"
+          "api-key": "YOUR_API_KEY"
         }
       }).then(response => {
         var carpark_availability = response.data.items[0].carpark_data
