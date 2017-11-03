@@ -1,9 +1,13 @@
-<body>
+<head>
   <script src="https://unpkg.com/vue"></script>
   <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+</head>
 
+<body>
   <div id="myParkingApp">
-    <input v-model="postcode" @keyup.enter="searchPostcode"><br> 
+    <input placeholder="Enter a postcode"
+           v-model="postcode"
+           v-on:keyup.enter="searchPostcode">
     {{ postcode }}<br>
     {{ postcodeX }}<br>
     {{ postcodeY }}
@@ -15,8 +19,8 @@ new Vue({
   el: '#myParkingApp',
   data: {
     postcode: "",
-    postcodeX: null,
-    postcodeY: null
+    postcodeX: "",
+    postcodeY: ""
   },
   methods: {
     searchPostcode: function() {

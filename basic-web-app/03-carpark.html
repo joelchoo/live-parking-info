@@ -1,11 +1,17 @@
-<body>
+<head>
   <script src="https://unpkg.com/vue"></script>
   <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+</head>
 
-  <div id="app">
-    <input v-model="postcodeInput" @keyup.enter="searchPostcode"><br>
+<body>
+  <div id="myParkingApp">
+    <input placeholder="Enter a postcode"
+           v-model="postcode"
+           v-on:keyup.enter="searchPostcode">
+    {{ postcode }}<br>
+    {{ postcodeX }}<br>
+    {{ postcodeY }}
 
-    <h3>Carparks:</h3>
     <div v-for="carpark in carparks">
       {{ carpark }}
     </div>
@@ -13,55 +19,72 @@
 </body>
 
 <script>
-var app = new Vue({
-  el: '#app',
+new Vue({
+  el: '#myParkingApp',
   data: {
-    carparks: [],
-    postcodeInput: ""
+    postcode: "",
+    postcodeX: "",
+    postcodeY: "",
+    carparks: []
   },
   methods: {
     searchPostcode: function() {
       axios.get('https://developers.onemap.sg/commonapi/search', {
         params: {
-          searchVal: this.postcodeInput,
+          searchVal: this.postcode,
           returnGeom: "Y",
           getAddrDetails: "N"
         }
       }).then(response => {
         var unwrappedResults = response.data.results[0]
-        x = parseFloat(unwrappedResults.X)
-        y = parseFloat(unwrappedResults.Y)
-        this.updateCarparkList(x, y)
+        this.postcodeX = unwrappedResults.X
+        this.postcodeY = unwrappedResults.Y
+        this.getCarparkList()
       })
-
-      this.postcodeInput = ""
     },
 
-    updateCarparkList: function(x, y) {
-      axios.get("https://data.gov.sg/api/action/datastore_search?resource_id=139a3035-e624-4f56-b63f-89ae28d4ae4c", {}).then(response => {
+    getCarparkList: function() {
+      axios.get("https://data.gov.sg/api/action/datastore_search", {
+        params: {
+          resource_id: "139a3035-e624-4f56-b63f-89ae28d4ae4c",
+          limit: 2074
+        }
+      }).then(response => {
         var carparks = response.data.result.records
-        var carparks_with_distances = []
-
-        for (var carpark of carparks) {
-          x2 = Math.pow((parseFloat(carpark.x_coord) - x), 2)
-          y2 = Math.pow((parseFloat(carpark.y_coord) - y), 2)
-          distance = Math.sqrt(x2 + y2)
-          carparks_with_distances.push({
-            distance: distance,
-            carpark: carpark
-          })
-        }
-
-        // https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/sort
-        // See the compareNumbers function
-        function compare_carparks_by_distance(carpark1, carpark2) {
-          return carpark1.distance - carpark2.distance
-        }
-
-        carparks_with_distances.sort(compare_carparks_by_distance)
-        this.carparks = carparks_with_distances.slice(0,10)
+        var nearest_carparks = this.getNearestCarparks(carparks)
+        this.carparks = nearest_carparks
       })
+    },
+
+    getNearestCarparks: function(carparks) {
+      for (var carpark of carparks) {
+        var distance = distanceFromXY(carpark, this.postcodeX, this.postcodeY)
+        carpark.distance = distance
+      }
+
+      var sorted_carparks = sortCarparksByDistance(carparks)
+      var nearest_carparks = sorted_carparks.slice(0, 10)
+      return nearest_carparks
     }
   }
 })
+
+// Helper functions
+function distanceFromXY(carpark, x, y) {
+  var x2 = Math.pow((parseFloat(carpark.x_coord) - x), 2)
+  var y2 = Math.pow((parseFloat(carpark.y_coord) - y), 2)
+  return Math.sqrt(x2 + y2)
+}
+
+function sortCarparksByDistance(carparks) {
+  // https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/sort
+  // See the compareNumbers function
+  function compare_carparks_by_distance(carpark1, carpark2) {
+    return carpark1.distance - carpark2.distance
+  }
+
+  carparks.sort(compare_carparks_by_distance)
+  return carparks
+}
+
 </script>

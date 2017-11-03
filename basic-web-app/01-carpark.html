@@ -1,8 +1,11 @@
-<body>
+<head>
   <script src="https://unpkg.com/vue"></script>
+</head>
 
+<body>
   <div id="myParkingApp">
-    <input v-model="postcode"><br> 
+    <input placeholder="Enter a postcode"
+           v-model="postcode">
     {{ postcode }}
   </div>
 </body>
