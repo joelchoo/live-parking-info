@@ -10,32 +10,8 @@
            v-on:keyup.enter="searchPostcode">
     {{ postcode }}<br>
     {{ postcodeX }}<br>
-    {{ postcodeY }}
+    {{ postcodeY }}<br>
   </div>
 </body>
 
-<script>
-new Vue({
-  el: '#myParkingApp',
-  data: {
-    postcode: "",
-    postcodeX: "",
-    postcodeY: ""
-  },
-  methods: {
-    searchPostcode: function() {
-      axios.get('https://developers.onemap.sg/commonapi/search', {
-        params: {
-          searchVal: this.postcode,
-          returnGeom: "Y",
-          getAddrDetails: "N"
-        }
-      }).then(response => {
-        var unwrappedResults = response.data.results[0]
-        this.postcodeX = unwrappedResults.X
-        this.postcodeY = unwrappedResults.Y
-      })
-    }
-  }
-})
-</script>
+<script src="02-carpark-logic.js"></script>

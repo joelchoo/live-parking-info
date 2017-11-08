@@ -8,9 +8,7 @@
     <input placeholder="Enter a postcode"
            v-model="postcode"
            v-on:keyup.enter="searchPostcode">
-    {{ postcode }}<br>
-    {{ postcodeX }}<br>
-    {{ postcodeY }}
+    <br>
 
     <div v-for="carpark in carparks">
       Distance: {{ carpark.distance }}m<br>
@@ -22,108 +20,5 @@
   </div>
 </body>
 
-<script>
-new Vue({
-  el: '#myParkingApp',
-  data: {
-    postcode: "",
-    postcodeX: "",
-    postcodeY: "",
-    carparks: []
-  },
-  methods: {
-    searchPostcode: function() {
-      axios.get('https://developers.onemap.sg/commonapi/search', {
-        params: {
-          searchVal: this.postcode,
-          returnGeom: "Y",
-          getAddrDetails: "N"
-        }
-      }).then(response => {
-        var unwrappedResults = response.data.results[0]
-        this.postcodeX = unwrappedResults.X
-        this.postcodeY = unwrappedResults.Y
-        this.getCarparkList()
-      })
-    },
-
-    getCarparkList: function() {
-      axios.get("https://data.gov.sg/api/action/datastore_search", {
-        params: {
-          resource_id: "139a3035-e624-4f56-b63f-89ae28d4ae4c",
-          limit: 2074
-        }
-      }).then(response => {
-        var carparks = response.data.result.records
-        var nearest_carparks = this.getNearestCarparks(carparks)
-        this.getCarparkAvailability(nearest_carparks)
-      })
-    },
-
-    getNearestCarparks: function(carparks) {
-      for (var carpark of carparks) {
-        var distance = distanceFromXY(carpark, this.postcodeX, this.postcodeY)
-        carpark.distance = distance
-      }
-
-      var sorted_carparks = sortCarparksByDistance(carparks)
-      var nearest_carparks = sorted_carparks.slice(0, 10)
-      return nearest_carparks
-    },
-
-    getCarparkAvailability: function(carparks) {
-      axios.get("https://api.data.gov.sg/v1/transport/carpark-availability", {
-        headers: {
-          "api-key": "YOUR_API_KEY"
-        }
-      }).then(response => {
-        var carpark_availability = response.data.items[0].carpark_data
-
-        // Match carpark_number in carpark_availability with car_park_no in carparks
-        this.carparks = combineCarparkData(carpark_availability, carparks)
-      })
-    }
-  }
-})
-
-// Helper functions
-function distanceFromXY(carpark, x, y) {
-  x2 = Math.pow((parseFloat(carpark.x_coord) - x), 2)
-  y2 = Math.pow((parseFloat(carpark.y_coord) - y), 2)
-  return Math.sqrt(x2 + y2)
-}
-
-function sortCarparksByDistance(carparks) {
-  // https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/sort
-  // See the compareNumbers function
-  function compare_carparks_by_distance(carpark1, carpark2) {
-    return carpark1.distance - carpark2.distance
-  }
-
-  carparks.sort(compare_carparks_by_distance)
-  return carparks
-}
-
-function combineCarparkData(carpark_availability, carparks) {
-  for (var carpark of carpark_availability) {
-    var carpark_number = carpark.carpark_number
-    var matched_carpark = findMatchingCarpark(carpark_number, carparks)
-    if (matched_carpark !== null) {
-      matched_carpark.total_lots = carpark.carpark_info[0].total_lots
-      matched_carpark.lots_available = carpark.carpark_info[0].lots_available
-    }
-  }
-  return carparks
-}
-
-function findMatchingCarpark(carpark_number, carparks) {
-  var matched_carpark = null
-  for (var carpark of carparks) {
-    if (carpark.car_park_no === carpark_number) {
-      matched_carpark = carpark
-      break
-    }
-  }
-  return matched_carpark
-}
-</script>
+<script src="carpark-helpers.js"></script>
+<script src="carpark-logic.js"></script>
