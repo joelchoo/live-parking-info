@@ -1,8 +1,44 @@
 // Helper functions
+function getNearestTenCarparks(carparks) {
+  var sortedCarparks = sortCarparksByDistance(carparks)
+  return sortedCarparks.slice(0, 10)
+}
+
+function addDistanceToCarparks(carparks, x, y) {
+  var carparksWithDistance = []
+
+  // Calculate distance from every carpark to the postcode
+  for (var carpark of carparks) {
+    if (carpark.lots_available !== undefined) {
+      var distance = distanceFromXY(carpark, x, y)
+      carpark.distance = distance
+      carparksWithDistance.push(carpark)
+    }
+  }
+
+  return carparksWithDistance
+}
+
+function getNearestCarpark(carparks, x, y) {
+  // Calculate distance from every carpark to the postcode
+  for (var carpark of carparks) {
+    var distance = distanceFromXY(carpark, x, y)
+    carpark.distance = distance
+  }
+
+  // Sort the carparks by ascending distance to the postcode
+  var sortedCarparks = sortCarparksByDistance(carparks)
+
+  // Take the first ten carparks
+  var nearestCarparks = getFirstTenCarparks(sortedCarparks)
+
+  return nearestCarparks[0]
+}
+
 async function getCarparkList() {
   var carparkStaticInfo = await getCarparkStaticInfo()
   var carparkAvailability = await getCarparkAvailability()
-  var combined = combineCarparkData(carparkAvailability, carparkStaticInfo)
+  var combined = combineCarparkData(carparkAvailability, carparkStaticInfo)  
   return combined
 }
 
@@ -21,7 +57,7 @@ async function getCarparkStaticInfo() {
 async function getCarparkAvailability() {
   return await axios.get("https://api.data.gov.sg/v1/transport/carpark-availability", {
     headers: {
-      "api-key": "YOUR_API_KEY"
+      "api-key": ""
     }
   }).then(response => {
     var carparkAvailability = response.data.items[0].carpark_data
@@ -49,7 +85,7 @@ function sortCarparksByDistance(carparks) {
 function combineCarparkData(carparkAvailability, carparks) {
   for (var carpark of carparkAvailability) {
     var carparkNumber = carpark.carpark_number
-    matched_carpark = findMatchingCarpark(carpark_number, carparks)
+    matched_carpark = findMatchingCarpark(carparkNumber, carparks)
     if (matched_carpark !== null) {
       matched_carpark.total_lots = carpark.carpark_info[0].total_lots
       matched_carpark.lots_available = carpark.carpark_info[0].lots_available
@@ -58,10 +94,10 @@ function combineCarparkData(carparkAvailability, carparks) {
   return carparks
 }
 
-function findMatchingCarpark(carpark_number, carparks) {
+function findMatchingCarpark(carparkNumber, carparks) {
   matchedCarpark = null
   for (carpark of carparks) {
-    if (carpark.car_park_no === carpark_number) {
+    if (carpark.car_park_no === carparkNumber) {
       matchedCarpark = carpark
       break
     }

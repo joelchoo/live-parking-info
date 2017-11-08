@@ -1,18 +1,43 @@
-# Build your own parking app
+# Build your own web app
 
 ---
 
-# Title
-## Subtitle
-### Subsubtitle
+# Setup
 
-* list item
-* list item
-* list item
+Download and install:
 
-See https://docs.decksetapp.com/English.lproj/getting-started.html
+* Sublime Text (https://www.sublimetext.com/3)
+* Google Chrome (https://www.google.com/chrome/)
 
-^ presenter note
+---
+
+# Setup
+
+Create a file called `parking.html`
+
+Open the file using Sublime Text.
+
+Open the file using Google Chrome.
+
+---
+
+# What you're going to build
+
+---
+
+# TODO
+
+# Sketch out our method
+
+1. Input box
+
+1. Convert to X and Y
+
+1. Get list of all carparks
+
+1. Find nearest 10 carparks
+
+1. (Bonus) Filter the list of carparks
 
 ---
 
@@ -21,7 +46,33 @@ See https://docs.decksetapp.com/English.lproj/getting-started.html
   hello
 </body>
 ```
-html, body, opening and closing tags, displaying text
+
+^ html, body, opening and closing tags
+
+---
+
+# HTML
+
+Language to describe web pages
+Structure/skeleton of a web page
+
+---
+
+```html
+<body>
+  hello there!
+</body>
+```
+
+---
+
+
+```html
+<body>
+  hello<br>
+  there!
+</body>
+```
 
 ---
 
@@ -30,7 +81,8 @@ html, body, opening and closing tags, displaying text
   <input>
 </body>
 ```
-input box
+
+^ input box
 
 ---
 
@@ -41,8 +93,8 @@ input box
   </div>
 </body>
 ```
-* divs
-* opening and closing tags (again)
+
+^ divs, opening and closing tags (again)
 
 ---
 
@@ -53,7 +105,8 @@ input box
   </div>
 </body>
 ```
-html attributes, strings
+
+^ html attributes, strings
 
 ---
 
@@ -65,14 +118,76 @@ html attributes, strings
 </body>
 
 <script>
-  console.log("test")
+  alert("Hello!")
 </script>
 ```
-adding scripts, console, functions (calls),  debugging
+
+^ adding scripts, functions (calls), interactivity
 
 ---
 
-```html, [.highlight: 1-3, 6, 11-15]
+```html, [.highlight: 7-9]
+<body>
+  <div>
+    <input placeholder="Enter a postcode">
+  </div>
+</body>
+
+<script>
+  console.log("Hello!")
+</script>
+```
+
+^ console.log, debugging?
+
+---
+
+```html, [.highlight: 1-3]
+<head>
+  <script src="https://unpkg.com/vue"></script>
+</head>
+
+<body>
+  <div>
+    <input placeholder="Enter a postal code">
+  </div>
+</body>
+
+<script>
+  console.log("Hello!")
+</script>
+```
+
+^ importing vue, head, why in head and not below
+
+---
+
+```html, [.highlight: 11-15]
+<head>
+  <script src="https://unpkg.com/vue"></script>
+</head>
+
+<body>
+  <div>
+    <input placeholder="Enter a postal code">
+  </div>
+</body>
+
+<script>
+  new Vue()
+</script>
+```
+
+^ using Vue framework, new, Vue() vs Vue
+
+
+---
+
+Use console to demonstrate objects, variables
+
+---
+
+```html, [.highlight: 6, 12-16]
 <head>
   <script src="https://unpkg.com/vue"></script>
 </head>
@@ -84,16 +199,19 @@ adding scripts, console, functions (calls),  debugging
 </body>
 
 <script>
-new Vue({
-  el: '#myParkingApp'
-})
+  var config = {
+    el: "#myParkingApp"
+  }
+
+  new Vue(config)
 </script>
 ```
-importing vue, objects, new, Vue, Vue(), id
+
+^ objects, id, variables
 
 ---
 
-```html, [.highlight: 8, 15-17]
+```html, [.highlight: 8, 14-17]
 <head>
   <script src="https://unpkg.com/vue"></script>
 </head>
@@ -106,19 +224,22 @@ importing vue, objects, new, Vue, Vue(), id
 </body>
 
 <script>
-new Vue({
-  el: '#myParkingApp',
-  data: {
-    postcode: "123456"
+  var config = {
+    el: "#myParkingApp",
+    data: {
+      postcode: "123456"
+    }
   }
-})
+
+  new Vue(config)
 </script>
 ```
-data object, interpolation
+
+^ data object, interpolation
 
 ---
 
-```html, [.highlight: 8]
+```html, [.highlight: 8, 17]
 <head>
   <script src="https://unpkg.com/vue"></script>
 </head>
@@ -133,14 +254,15 @@ data object, interpolation
 
 <script>
 new Vue({
-  el: '#myParkingApp',
+  el:  "#myParkingApp",
   data: {
-    postcode: "123456"
+    postcode: ""
   }
 })
 </script>
 ```
-v-model
+
+^ v-model
 
 ---
 
@@ -148,51 +270,124 @@ v-model
 
 ---
 
+Create a file named `carpark-logic.js`
 
-```html, [.highlight: 5,16-20]
+---
+
+`carpark.html`
+
+```html, [.highlight: 13]
+<head>
+  <script src="https://unpkg.com/vue"></script>
+</head>
+
 <body>
   <div id="myParkingApp">
     <input placeholder="Enter a postcode"
-           v-model="postcode"
-           v-on:keyup.enter="searchPostcode">
+           v-model="postcode">
     {{ postcode }}
   </div>
 </body>
 
-<script>
-new Vue({
-  el: '#myParkingApp',
-  data: {
-    postcode: ""
-  },
-  methods: {
-    searchPostcode: function() {
-      console.log("searchPostcode")
-    }
-  }
-})
-</script>
+<script src="carpark-logic.js"></script>
 ```
 
-functions/methods, v-on:keyup-enter
+^ importing our own files
 
 ---
 
-```html, [.highlight: 7-8,17-18,22-23]
+`carpark-logic.js`
+
+```javascript
+var config = {
+  el: "#myParkingApp",
+  data: {
+    postcode: ""
+  }
+}
+
+new Vue(config)
+```
+
+---
+
+`carpark.html`
+
+```html, [.highlight: 6-7]
 <body>
   <div id="myParkingApp">
     <input placeholder="Enter a postcode"
-           v-model="postcode"
-           v-on:keyup.enter="searchPostcode">
+           v-model="postcode">
     {{ postcode }}
     {{ postcodeX }}
     {{ postcodeY }}
   </div>
 </body>
+```
 
-<script>
-new Vue({
-  el: '#myParkingApp',
+---
+
+`carpark-logic.js`
+
+```javascript, [.highlight: 4-6]
+var config = {
+  el: "#myParkingApp",
+  data: {
+    postcode: "",
+    postcodeX: "111",
+    postcodeY: "222"
+  }
+}
+```
+
+---
+
+`carpark.html`
+
+```html, [.highlight: 9-11]
+<head>
+  <script src="https://unpkg.com/vue"></script>
+</head>
+
+<body>
+  <div id="myParkingApp">
+    <input placeholder="Enter a postcode"
+           v-model="postcode">
+    {{ postcode }}<br>
+    {{ postcodeX }}<br>
+    {{ postcodeY }}<br>
+  </div>
+</body>
+
+<script src="carpark-logic.js"></script>
+```
+
+---
+
+`carpark.html`
+
+```html, [.highlight: 5]
+<body>
+  <div id="myParkingApp">
+    <input placeholder="Enter a postcode"
+           v-model="postcode"
+           v-on:keyup.enter="postcode = 275983">
+    {{ postcode }}<br>
+    {{ postcodeX }}<br>
+    {{ postcodeY }}<br>
+  </div>
+</body>
+```
+
+^ keypress events
+
+---
+
+`carpark-logic.js`
+
+```javascript, [.highlight: 5-13]
+var config = {
+  el: "#myParkingApp",
   data: {
     postcode: "",
     postcodeX: "",
@@ -200,18 +395,20 @@ new Vue({
   },
   methods: {
     searchPostcode: function() {
-      this.postcodeX = "123"
-      this.postcodeY = "456"
+      this.postcodeX = "333"
+      this.postcodeY = "444"
     }
   }
-})
-</script>
+}
 ```
-this, show desired result of this stage
+
+^ write our function here, functions/methods, accessing data using this.var
 
 ---
 
-```html, [.highlight: 6-7]
+`carpark.html`
+
+```html, [.highlight: 5]
 <body>
   <div id="myParkingApp">
     <input placeholder="Enter a postcode"
@@ -219,31 +416,16 @@ this, show desired result of this stage
            v-on:keyup.enter="searchPostcode">
     {{ postcode }}<br>
     {{ postcodeX }}<br>
-    {{ postcodeY }}
+    {{ postcodeY }}<br>
   </div>
 </body>
-
-<script>
-new Vue({
-  el: '#myParkingApp',
-  data: {
-    postcode: "",
-    postcodeX: "",
-    postcodeY: ""
-  },
-  methods: {
-    searchPostcode: function() {
-      this.postcodeX = "123"
-      this.postcodeY = "456"
-    }
-  }
-})
-</script>
 ```
 
-br
+^ link to vue method
 
 ---
+
+`carpark.html`
 
 ```html, [.highlight: 3]
 <head>
@@ -252,13 +434,15 @@ br
 </head>
 ```
 
-import axios, explain what making HTTP requests is
+^ import axios, explain what making HTTP requests is
 
 ---
 
+`carpark-logic.js`
+
 ```javascript, [.highlight: 2-7]
 searchPostcode: function() {
-  axios.get('https://developers.onemap.sg/commonapi/search', {
+  axios.get("https://developers.onemap.sg/commonapi/search", {
     params: {
       searchVal: this.postcode,
       returnGeom: "Y",
@@ -268,13 +452,15 @@ searchPostcode: function() {
 }
 ```
 
-making HTTP request, params, looking at documentation
+^ making HTTP request, params, looking at documentation
 
 ---
 
+`carpark-logic.js`
+
 ```javascript, [.highlight: 8-10]
 searchPostcode: function() {
-  axios.get('https://developers.onemap.sg/commonapi/search', {
+  axios.get("https://developers.onemap.sg/commonapi/search", {
     params: {
       searchVal: this.postcode,
       returnGeom: "Y",
@@ -286,13 +472,35 @@ searchPostcode: function() {
 }
 ```
 
-displaying response object, see what it looks like
+^ displaying response object, see what it looks like
 
 ---
 
+`carpark-logic.js`
+
 ```javascript, [.highlight: 9]
 searchPostcode: function() {
-  axios.get('https://developers.onemap.sg/commonapi/search', {
+  axios.get("https://developers.onemap.sg/commonapi/search", {
+    params: {
+      searchVal: this.postcode,
+      returnGeom: "Y",
+      getAddrDetails: "N"
+    }
+  }).then(response => {
+    console.log(response.data)
+  })
+}
+```
+
+^ unwrapping response object, dot notation
+
+---
+
+`carpark-logic.js`
+
+```javascript, [.highlight: 9]
+searchPostcode: function() {
+  axios.get("https://developers.onemap.sg/commonapi/search", {
     params: {
       searchVal: this.postcode,
       returnGeom: "Y",
@@ -304,33 +512,35 @@ searchPostcode: function() {
 }
 ```
 
-arrays, unwrapping response object, dot notation
+^ arrays
 
 ---
 
+`carpark-logic.js`
+
 ```javascript, [.highlight: 9-11]
 searchPostcode: function() {
-  axios.get('https://developers.onemap.sg/commonapi/search', {
+  axios.get("https://developers.onemap.sg/commonapi/search", {
     params: {
       searchVal: this.postcode,
       returnGeom: "Y",
       getAddrDetails: "N"
     }
   }).then(response => {
-    var unwrappedResults = response.data.results[0]
-    this.postcodeX = unwrappedResults.X
-    this.postcodeY = unwrappedResults.Y
+    var searchResult = response.data.results[0]
+    this.postcodeX = searchResult.X
+    this.postcodeY = searchResult.Y
   })
 }
 ```
-
-vars
 
 ---
 
 02-carpark.html done
 
 ---
+
+`carpark.html`
 
 ```html, [.highlight: 7-9]
 <body>
@@ -346,25 +556,31 @@ vars
 </body>
 ```
 
-...
+^ v-for
 
-```javascript, [.highlight: 5]
+---
+
+`carpark-logic.js`
+
+```javascript, [.highlight: 4-5]
 data: {
   postcode: "",
   postcodeX: "",
   postcodeY: "",
-  carparks: ["carpark1", "carpark2", "carpark3"]
+  carparks: []
 }
 ```
 
-loops, arrays (again), displaying the result
+^ loops, arrays (again), displaying the result
 
 ---
 
-```javascript, [.highlight: 13, 17-19]
+`carpark-logic.js`
+
+```javascript, [.highlight: 13, 15, 17-19]
 methods: {
   searchPostcode: function() {
-    axios.get('https://developers.onemap.sg/commonapi/search', {
+    axios.get("https://developers.onemap.sg/commonapi/search", {
       params: {
         searchVal: this.postcode,
         returnGeom: "Y",
@@ -374,215 +590,196 @@ methods: {
       var unwrappedResults = response.data.results[0]
       this.postcodeX = unwrappedResults.X
       this.postcodeY = unwrappedResults.Y
-      this.getCarparkList()
+      this.getNearestCarparks()
     })
   },
 
-  getCarparkList: function() {
-    this.carparks = [1,2,3]
+  getNearestCarparks: function() {
+    this.carparks = ["carpark1", "carpark2", "carpark3"]
   }
 }
 ```
 
-getCarparkList, displaying the result
+^ getNearestCarparks, displaying the result
 
 ---
 
-```javascript, [.highlight: 2-7]
-getCarparkList: function() {
-  axios.get("https://data.gov.sg/api/action/datastore_search", {
-    params: {
-      resource_id: "139a3035-e624-4f56-b63f-89ae28d4ae4c",
-      limit: 2074
-    }
-  })
-}
-```
-
-making the API call, where we get the resource id and limit from
-
----
-
-```javascript, [.highlight: 7-9]
-getCarparkList: function() {
-  axios.get("https://data.gov.sg/api/action/datastore_search", {
-    params: {
-      resource_id: "139a3035-e624-4f56-b63f-89ae28d4ae4c",
-      limit: 2074
-    }
-  }).then(response => {
-    console.log(response)
-  })
-}
-```
-
-exploring the response object
-
----
-
-```javascript, [.highlight: 7-9]
-getCarparkList: function() {
-  axios.get("https://data.gov.sg/api/action/datastore_search", {
-    params: {
-      resource_id: "139a3035-e624-4f56-b63f-89ae28d4ae4c",
-      limit: 2074
-    }
-  }).then(response => {
-    var carparks = response.data.result.records
-  })
-}
-```
-
-unwrap the response to get carparks data. we only want to display the nearest carparks
-
----
-
-```javascript, [.highlight: 8-10]
-getCarparkList: function() {
-  axios.get("https://data.gov.sg/api/action/datastore_search", {
-    params: {
-      resource_id: "139a3035-e624-4f56-b63f-89ae28d4ae4c",
-      limit: 2074
-    }
-  }).then(response => {
-    var carparks = response.data.result.records
-    var nearest_carparks = this.getNearestCarparks(carparks)
-    this.carparks = nearest_carparks
-  })
-}
-```
-
-hand off to another function
-
----
+Recall:
 
 ```javascript
-methods: {
-  searchPostcode: function() {
+searchPostcode: function() {
+  axios.get("https://developers.onemap.sg/commonapi/search", {
     ...
-  },
-  getCarparkList: function() {
+  }).then(response => {
     ...
-  },
-  getNearestCarpark: function(carparks) {
-
-  }
+  })
 }
 ```
 
 ---
 
+Recall:
 
 ```javascript
-getNearestCarpark: function(carparks) {
-  // 1. calculate and add distance to carparks
-  // 2. sort carparks by distance
-  // 3. take first ten carparks
+searchPostcode: function() {
+  axios.get("https://developers.onemap.sg/commonapi/search", {
+    ...
+  }).then(response => {
+    ...
+  })
 }
 ```
 
-sketch out the way to 03-carpark.html
+I wish we could do:
 
----
-
-```javascript, [.highlight: 2-5]
-getNearestCarpark: function(carparks) {
-  // 1. calculate and add distance to carparks
-  for (var carpark of carparks) {
-    console.log(carpark)
-  }
-  // 2. sort carparks by distance
-  // 3. take first ten carparks
+```javascript, [.highlight: 1-3]
+getNearestCarparks: function() {
+  axios.get('https://getcarparks.com/').then(carparks => ...)
 }
 ```
 
-loops
-
 ---
 
-```javascript, [.highlight: 4-5]
-getNearestCarpark: function(carparks) {
-  // 1. calculate and add distance to carparks
-  for (var carpark of carparks) {
-    var distance = distanceFromXY(carpark, this.postcodeX, this.postcodeY)
-    console.log(distance)
-  }
-  // 2. sort carparks by distance
-  // 3. take first ten carparks
+`carpark.html`
+
+```html
+<head>
+  ...
+</head>
+
+<body>
+  ...
+</body>
+
+<script src="carpark-helpers.js"></script>
+<script src="carpark-logic.js"></script>
+```
+
+`carpark-logic.js`
+
+```javascript, [.highlight: 2-4]
+getNearestCarparks: function() {
+  getCarparkList().then(carparks => {
+
+  })
 }
 ```
 
-calculating distance
+^ helper function
 
 ---
 
-```javascript, [.highlight: 4-5]
-getNearestCarpark: function(carparks) {
-  // 1. calculate and add distance to carparks
-  for (var carpark of carparks) {
-    var distance = distanceFromXY(carpark, this.postcodeX, this.postcodeY)
-    carpark.distance = distance
-  }
-  // 2. sort carparks by distance
-  // 3. take first ten carparks
+`carpark-logic.js`
+
+```javascript, [.highlight: 2-4]
+getNearestCarparks: function() {
+  getCarparkList().then(carparks => {
+    console.log(carparks)
+  })
 }
 ```
 
-assigning distance into carpark
-
 ---
 
-```javascript, [.highlight: 7-8]
-getNearestCarpark: function(carparks) {
-  // 1. calculate and add distance to carparks
-  for (var carpark of carparks) {
-    var distance = distanceFromXY(carpark, this.postcodeX, this.postcodeY)
-    carpark.distance = distance
-  }
-  // 2. sort carparks by distance
-  var sorted_carparks = sortCarparksByDistance(carparks)
-  // 3. take first ten carparks
+`carpark-logic.js`
+
+```javascript, [.highlight: 3-7]
+getNearestCarparks: function() {
+  getCarparkList().then(carparks => {
+    // Calculate distance from every carpark to the postcode
+    
+    // Sort the carparks by ascending distance to the postcode
+
+    // Take the first ten carparks
+  })
 }
 ```
 
-sort carparks
+---
+
+`carpark-logic.js`
+
+```javascript, [.highlight: 3-7]
+getNearestCarparks: function() {
+  getCarparkList().then(carparks => {
+    // Calculate distance from every carpark to the postcode
+    for (var carpark of carparks) {
+      var distance = distanceFromXY(carpark, this.postcodeX, this.postcodeY)
+      carpark.distance = distance
+    }
+    
+    // Sort the carparks by ascending distance to the postcode
+
+    // Take the first ten carparks
+  })
+}
+```
 
 ---
+
+`carpark-logic.js`
 
 ```javascript, [.highlight: 9-10]
-getNearestCarpark: function(carparks) {
-  // 1. calculate and add distance to carparks
-  for (var carpark of carparks) {
-    var distance = distanceFromXY(carpark, this.postcodeX, this.postcodeY)
-    carpark.distance = distance
-  }
-  // 2. sort carparks by distance
-  var sorted_carparks = sortCarparksByDistance(carparks)
-  // 3. take first ten carparks
-  var nearest_carparks = sorted_carparks.slice(0, 10)
+getNearestCarparks: function() {
+  getCarparkList().then(carparks => {
+    // Calculate distance from every carpark to the postcode
+    for (var carpark of carparks) {
+      var distance = distanceFromXY(carpark, this.postcodeX, this.postcodeY)
+      carpark.distance = distance
+    }
+    
+    // Sort the carparks by ascending distance to the postcode
+    var sortedCarparks = sortCarparksByDistance(carparks)
+
+    // Take the first ten carparks
+  })
 }
 ```
-
-slicing arrays
 
 ---
 
-```javascript, [.highlight: 11]
-getNearestCarpark: function(carparks) {
-  // 1. calculate and add distance to carparks
-  for (var carpark of carparks) {
-    var distance = distanceFromXY(carpark, this.postcodeX, this.postcodeY)
-    carpark.distance = distance
-  }
-  // 2. sort carparks by distance
-  var sorted_carparks = sortCarparksByDistance(carparks)
-  // 3. take first ten carparks
-  var nearest_carparks = sorted_carparks.slice(0, 10)
-  return nearest_carparks
+`carpark-logic.js`
+
+```javascript, [.highlight: 12-13]
+getNearestCarparks: function() {
+  getCarparkList().then(carparks => {
+    // Calculate distance from every carpark to the postcode
+    for (var carpark of carparks) {
+      var distance = distanceFromXY(carpark, this.postcodeX, this.postcodeY)
+      carpark.distance = distance
+    }
+    
+    // Sort the carparks by ascending distance to the postcode
+    var sortedCarparks = sortCarparksByDistance(carparks)
+
+    // Take the first ten carparks
+    var nearestCarparks = getFirstTenCarparks(sortedCarparks)
+  })
 }
 ```
 
-return in function
+---
+
+`carpark-logic.js`
+
+```javascript, [.highlight: 14]
+getNearestCarparks: function() {
+  getCarparkList().then(carparks => {
+    // Calculate distance from every carpark to the postcode
+    for (var carpark of carparks) {
+      var distance = distanceFromXY(carpark, this.postcodeX, this.postcodeY)
+      carpark.distance = distance
+    }
+    
+    // Sort the carparks by ascending distance to the postcode
+    var sortedCarparks = sortCarparksByDistance(carparks)
+
+    // Take the first ten carparks
+    var nearestCarparks = getFirstTenCarparks(sortedCarparks)
+    this.carparks = nearestCarparks
+  })
+}
+```
 
 ---
 
@@ -682,7 +879,7 @@ additional data we need to add into our carpark object
 ---
 
 ```javascript
-getCarparkList: function() {
+getNearestCarparks: function() {
   axios.get("https://data.gov.sg/api/action/datastore_search", {
     params: {
       resource_id: "139a3035-e624-4f56-b63f-89ae28d4ae4c",
@@ -701,7 +898,7 @@ where we left off for our logic
 ---
 
 ```javascript, [.highlight: 10]
-getCarparkList: function() {
+getNearestCarparks: function() {
   axios.get("https://data.gov.sg/api/action/datastore_search", {
     params: {
       resource_id: "139a3035-e624-4f56-b63f-89ae28d4ae4c",
@@ -724,7 +921,7 @@ methods: {
   searchPostcode: function() {
     ...
   },
-  getCarparkList: function() {
+  getNearestCarparks: function() {
     ...
   },
   getNearestCarparks: function(carparks) {
