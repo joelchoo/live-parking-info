@@ -35,13 +35,13 @@ function getNearestCarpark(carparks, x, y) {
   return nearestCarparks[0]
 }
 
-async function getCarparkList() {
+async function getCarparkList(x, y) {
   var carparkStaticInfo = await getCarparkStaticInfo()
   var carparkAvailability = await getCarparkAvailability()
   var carparks = combineCarparkData(carparkAvailability, carparkStaticInfo)
 
   // Calculate distance of every carpark to x and y
-  var carparksWithDistance = addDistanceToCarparks(carparks, this.postcodeX, this.postcodeY)
+  var carparksWithDistance = addDistanceToCarparks(carparks, x, y)
 
   // Get the nearest ten carparks
   var nearestCarparks = getNearestTenCarparks(carparksWithDistance) 

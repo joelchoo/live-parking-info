@@ -24,7 +24,7 @@ var config = {
 
     getNearestCarparks: function() {
       // Get list of carparks
-      getCarparkList().then(carparks => {
+      getCarparkList(this.postcodeX, this.postcodeY).then(carparks => {
         this.carparks = carparks
       })
     }

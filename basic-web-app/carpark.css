@@ -1,0 +1,9 @@
+body {
+  background-color: lightsteelblue;
+  text-align: center;
+}
+
+input {
+  width: 50%;
+  font-size: 20px;
+}
