@@ -25,12 +25,7 @@ var config = {
     getNearestCarparks: function() {
       // Get list of carparks
       getCarparkList().then(carparks => {
-        // Calculate distance of every carpark to x and y
-        var carparksWithDistance = addDistanceToCarparks(carparks, this.postcodeX, this.postcodeY)
-
-        // Get the nearest ten carparks
-        var nearestCarparks = getNearestTenCarparks(carparksWithDistance)
-        this.carparks = nearestCarparks
+        this.carparks = carparks
       })
     }
   }

@@ -14,7 +14,7 @@
 
 Download and install:
 
-* Sublime Text (https://www.sublimetext.com/3)
+* Atom (https://atom.io/)
 * Google Chrome (https://www.google.com/chrome/)
 
 ---
@@ -40,6 +40,8 @@ Open the file using Google Chrome.
 1. Convert to X and Y
 
 1. Find nearest 10 carparks
+
+1. Styling the web page
 
 ---
 
@@ -102,6 +104,18 @@ Open the file using Google Chrome.
 ```
 
 ^ html attributes, strings
+
+---
+
+```html, [.highlight: 1, 3]
+<body style="background-color: lightsteelblue; text-align: center;">
+  <div>
+    <input placeholder="Enter a postcode" style="width: 50%; font-size: 20px;">
+  </div>
+</body>
+```
+
+^ inline styles 
 
 ---
 
