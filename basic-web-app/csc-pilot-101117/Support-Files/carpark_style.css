@@ -1,0 +1,45 @@
+@import url('https://fonts.googleapis.com/css?family=Mandali');
+@import url('https://fonts.googleapis.com/css?family=PT+Sans+Caption');
+
+#inputBackground {
+	background-image: url("background-image.png");; 
+	height:45%;
+	padding-left: 0px;
+	border-left: 0px;
+	margin-bottom: 40px;
+}
+
+h1 {
+	font-family: "Mandali";
+	font-size: 40px;
+	color: #F2F2F2;
+	margin: auto;
+	padding-left: 15%;
+	font-style: normal;
+	padding-top: 85px;
+}
+
+input {
+	width: 70%;
+	font-family: "PT Sans Caption";
+    border: 1px solid #ccc;
+    border-radius: 4px;
+	font-size: 20px;
+	display: block;
+	margin: auto;
+	color: #023417;
+	padding: 12px 20px;
+}
+
+h3 {
+	font-family: "PT Sans Caption";
+    font-size: 20px;
+    font-style: bold;
+    padding-left: 15%;
+}
+
+#carparkResults {
+	font-family: "Mandali";
+    font-size: 12px;
+    padding-left: 15%;
+}

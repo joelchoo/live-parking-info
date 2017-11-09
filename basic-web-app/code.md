@@ -16,6 +16,7 @@ Download and install:
 
 * Sublime Text (https://www.sublimetext.com/3)
 * Google Chrome (https://www.google.com/chrome/)
+* Download Google-Drive folder (http://tinyurl.com/my-parking-app)
 
 ---
 

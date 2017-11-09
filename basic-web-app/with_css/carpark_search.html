@@ -79,7 +79,7 @@ var app = new Vue({
       
       axios.get("https://api.data.gov.sg/v1/transport/carpark-availability", {
         headers: {
-          "api-key": "YOUR_API_KEY"
+          "api-key": "YOUR API KEY"
         }
       }).then(response => {
         carpark_data = response.data.items[0].carpark_data
