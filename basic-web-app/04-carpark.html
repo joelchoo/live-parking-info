@@ -4,10 +4,11 @@
 </head>
 
 <body>
-  <div id="myParkingApp">
+  <div id="myParkingApp" style="background-color: lightsteelblue; text-align: center; margin-top: 30px">
     <input placeholder="Enter a postcode"
            v-model="postcode"
-           v-on:keyup.enter="searchPostcode">
+           v-on:keyup.enter="searchPostcode"
+           style="width: 70%; padding-top: 10px; padding-bottom: 10px; text-align:center; font-size: 20px">
     <br>
 
     <div v-for="carpark in carparks">

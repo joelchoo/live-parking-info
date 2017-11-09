@@ -28,7 +28,7 @@ var config = {
         // Calculate distance of every carpark to x and y
         var carparksWithDistance = addDistanceToCarparks(carparks, this.postcodeX, this.postcodeY)
 
-        // Take the first ten carparks
+        // Get the nearest ten carparks
         var nearestCarparks = getNearestTenCarparks(carparksWithDistance)
         this.carparks = nearestCarparks
       })

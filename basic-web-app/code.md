@@ -2,6 +2,14 @@
 
 ---
 
+# Why?
+
+* NOT to become a software engineer
+* Show you basics of how web apps work
+* Give you something real to take home!
+
+---
+
 # Setup
 
 Download and install:
@@ -25,19 +33,13 @@ Open the file using Google Chrome.
 
 ---
 
-# TODO
-
-# Sketch out our method
+# How we're building this
 
 1. Input box
 
 1. Convert to X and Y
 
-1. Get list of all carparks
-
 1. Find nearest 10 carparks
-
-1. (Bonus) Filter the list of carparks
 
 ---
 
@@ -48,13 +50,6 @@ Open the file using Google Chrome.
 ```
 
 ^ html, body, opening and closing tags
-
----
-
-# HTML
-
-Language to describe web pages
-Structure/skeleton of a web page
 
 ---
 
@@ -687,10 +682,9 @@ getNearestCarparks: function() {
 getNearestCarparks: function() {
   getCarparkList().then(carparks => {
     // Calculate distance from every carpark to the postcode
-    
-    // Sort the carparks by ascending distance to the postcode
 
-    // Take the first ten carparks
+    // Get the nearest ten carparks
+
   })
 }
 ```
@@ -703,14 +697,10 @@ getNearestCarparks: function() {
 getNearestCarparks: function() {
   getCarparkList().then(carparks => {
     // Calculate distance from every carpark to the postcode
-    for (var carpark of carparks) {
-      var distance = distanceFromXY(carpark, this.postcodeX, this.postcodeY)
-      carpark.distance = distance
-    }
-    
-    // Sort the carparks by ascending distance to the postcode
+    var carparksWithDistance = addDistanceToCarparks(carparks, this.postcodeX, this.postcodeY)
 
-    // Take the first ten carparks
+    // Get the nearest ten carparks
+
   })
 }
 ```
@@ -719,19 +709,14 @@ getNearestCarparks: function() {
 
 `carpark-logic.js`
 
-```javascript, [.highlight: 9-10]
+```javascript, [.highlight: 6-7]
 getNearestCarparks: function() {
   getCarparkList().then(carparks => {
     // Calculate distance from every carpark to the postcode
-    for (var carpark of carparks) {
-      var distance = distanceFromXY(carpark, this.postcodeX, this.postcodeY)
-      carpark.distance = distance
-    }
-    
-    // Sort the carparks by ascending distance to the postcode
-    var sortedCarparks = sortCarparksByDistance(carparks)
+    var carparksWithDistance = addDistanceToCarparks(carparks, this.postcodeX, this.postcodeY)
 
-    // Take the first ten carparks
+    // Get the nearest ten carparks
+    var nearestCarparks = getNearestTenCarparks(carparksWithDistance)
   })
 }
 ```
@@ -740,42 +725,14 @@ getNearestCarparks: function() {
 
 `carpark-logic.js`
 
-```javascript, [.highlight: 12-13]
+```javascript, [.highlight: 8]
 getNearestCarparks: function() {
   getCarparkList().then(carparks => {
     // Calculate distance from every carpark to the postcode
-    for (var carpark of carparks) {
-      var distance = distanceFromXY(carpark, this.postcodeX, this.postcodeY)
-      carpark.distance = distance
-    }
-    
-    // Sort the carparks by ascending distance to the postcode
-    var sortedCarparks = sortCarparksByDistance(carparks)
+    var carparksWithDistance = addDistanceToCarparks(carparks, this.postcodeX, this.postcodeY)
 
-    // Take the first ten carparks
-    var nearestCarparks = getFirstTenCarparks(sortedCarparks)
-  })
-}
-```
-
----
-
-`carpark-logic.js`
-
-```javascript, [.highlight: 14]
-getNearestCarparks: function() {
-  getCarparkList().then(carparks => {
-    // Calculate distance from every carpark to the postcode
-    for (var carpark of carparks) {
-      var distance = distanceFromXY(carpark, this.postcodeX, this.postcodeY)
-      carpark.distance = distance
-    }
-    
-    // Sort the carparks by ascending distance to the postcode
-    var sortedCarparks = sortCarparksByDistance(carparks)
-
-    // Take the first ten carparks
-    var nearestCarparks = getFirstTenCarparks(sortedCarparks)
+    // Get the nearest ten carparks
+    var nearestCarparks = getNearestTenCarparks(carparksWithDistance)
     this.carparks = nearestCarparks
   })
 }
