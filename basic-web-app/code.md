@@ -16,6 +16,7 @@ Download and install:
 
 * Atom (https://atom.io/)
 * Google Chrome (https://www.google.com/chrome/)
+* Download Google-Drive folder (http://tinyurl.com/my-parking-app)
 
 ---
 
