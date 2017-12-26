@@ -6,6 +6,8 @@
 
 * NOT to become a software engineer
 * Show you basics of how web apps work
+* Have more meaningful discussion about web applications (understand the lingo)
+* Give you confidence to learn more/explore about code!
 * Give you something real to take home!
 
 ---
@@ -15,18 +17,16 @@
 Download and install:
 
 * Atom (https://atom.io/)
-* Google Chrome (https://www.google.com/chrome/)
-* Download Google-Drive folder (http://tinyurl.com/my-parking-app)
+* Zeit Now (https://zeit.co/download)
+* Download Google-Drive folder (tinyurl.com/my-parking-app)
 
 ---
 
 # Setup
 
-Create a file called `parking.html`
+Open the folder using Atom.
 
-Open the file using Sublime Text.
-
-Open the file using Google Chrome.
+Open the HTML file using Google Chrome.
 
 ---
 
@@ -43,6 +43,22 @@ Open the file using Google Chrome.
 1. Find nearest 10 carparks
 
 1. Styling the web page
+
+---
+
+# Suggested workflow
+
+1. I'll write a small code snippet
+
+1. I'll run the snippet to show you what it does
+
+1. I'll explain the changes
+
+1. You type out and try out the changes on your laptops!
+
+---
+
+# Displaying some text
 
 ---
 
@@ -190,11 +206,6 @@ Open the file using Google Chrome.
 
 ^ using Vue framework, new, Vue() vs Vue
 
-
----
-
-Use console to demonstrate objects, variables
-
 ---
 
 ```html, [.highlight: 6, 12-16]
@@ -218,6 +229,8 @@ Use console to demonstrate objects, variables
 ```
 
 ^ objects, id, variables
+
+^ Use console to demonstrate objects, variables
 
 ---
 
@@ -249,7 +262,7 @@ Use console to demonstrate objects, variables
 
 ---
 
-```html, [.highlight: 8, 17]
+```html, [.highlight: 7, 8, 17]
 <head>
   <script src="https://unpkg.com/vue"></script>
 </head>
@@ -276,11 +289,9 @@ new Vue({
 
 ---
 
-01-carpark.html done
+We're at our first milestone!
 
----
-
-Create a file named `carpark-logic.js`
+Next step, converting the postcode into x and y.
 
 ---
 
@@ -393,6 +404,25 @@ var config = {
 
 ---
 
+`carpark.html`
+
+```html, [.highlight: 5]
+<body>
+  <div id="myParkingApp">
+    <input placeholder="Enter a postcode"
+           v-model="postcode"
+           v-on:keyup.enter="searchPostcode">
+    {{ postcode }}<br>
+    {{ postcodeX }}<br>
+    {{ postcodeY }}<br>
+  </div>
+</body>
+```
+
+^ link to vue method
+
+---
+
 `carpark-logic.js`
 
 ```javascript, [.highlight: 5-13]
@@ -416,22 +446,9 @@ var config = {
 
 ---
 
-`carpark.html`
+How can we convert a postcode into x and y?
 
-```html, [.highlight: 5]
-<body>
-  <div id="myParkingApp">
-    <input placeholder="Enter a postcode"
-           v-model="postcode"
-           v-on:keyup.enter="searchPostcode">
-    {{ postcode }}<br>
-    {{ postcodeX }}<br>
-    {{ postcodeY }}<br>
-  </div>
-</body>
-```
-
-^ link to vue method
+We can "phone a friend"!
 
 ---
 
@@ -546,7 +563,9 @@ searchPostcode: function() {
 
 ---
 
-02-carpark.html done
+More than halfway done now!
+
+Next, get the nearest carparks and display them.
 
 ---
 
@@ -665,11 +684,14 @@ getNearestCarparks: function() {
 <script src="carpark-logic.js"></script>
 ```
 
+---
+
 `carpark-logic.js`
 
-```javascript, [.highlight: 2-4]
+```javascript, [.highlight: 2-5]
 getNearestCarparks: function() {
-  getCarparkList().then(carparks => {
+  getCarparkList(this.postcodeX, this.postcodeY)
+  .then(carparks => {
 
   })
 }
@@ -683,7 +705,7 @@ getNearestCarparks: function() {
 
 ```javascript, [.highlight: 2-4]
 getNearestCarparks: function() {
-  getCarparkList().then(carparks => {
+  getCarparkList(this.postcodeX, this.postcodeY).then(carparks => {
     console.log(carparks)
   })
 }
@@ -693,71 +715,23 @@ getNearestCarparks: function() {
 
 `carpark-logic.js`
 
-```javascript, [.highlight: 3-7]
+```javascript, [.highlight: 3]
 getNearestCarparks: function() {
-  getCarparkList().then(carparks => {
-    // Calculate distance from every carpark to the postcode
-
-    // Get the nearest ten carparks
-
+  getCarparkList(this.postcodeX, this.postcodeY).then(carparks => {
+    this.carparks = carparks
   })
 }
 ```
 
 ---
 
-`carpark-logic.js`
+All done with the logic.
 
-```javascript, [.highlight: 3-7]
-getNearestCarparks: function() {
-  getCarparkList().then(carparks => {
-    // Calculate distance from every carpark to the postcode
-    var carparksWithDistance = addDistanceToCarparks(carparks, this.postcodeX, this.postcodeY)
-
-    // Get the nearest ten carparks
-
-  })
-}
-```
+Now we're going to make things look nicer!
 
 ---
 
-`carpark-logic.js`
-
-```javascript, [.highlight: 6-7]
-getNearestCarparks: function() {
-  getCarparkList().then(carparks => {
-    // Calculate distance from every carpark to the postcode
-    var carparksWithDistance = addDistanceToCarparks(carparks, this.postcodeX, this.postcodeY)
-
-    // Get the nearest ten carparks
-    var nearestCarparks = getNearestTenCarparks(carparksWithDistance)
-  })
-}
-```
-
----
-
-`carpark-logic.js`
-
-```javascript, [.highlight: 8]
-getNearestCarparks: function() {
-  getCarparkList().then(carparks => {
-    // Calculate distance from every carpark to the postcode
-    var carparksWithDistance = addDistanceToCarparks(carparks, this.postcodeX, this.postcodeY)
-
-    // Get the nearest ten carparks
-    var nearestCarparks = getNearestTenCarparks(carparksWithDistance)
-    this.carparks = nearestCarparks
-  })
-}
-```
-
----
-
-03-carpark.html done
-
----
+`carpark.html`
 
 ```html
 <body>
@@ -776,13 +750,16 @@ getNearestCarparks: function() {
 </body>
 ```
 
-remind them what our HTML is showing
+^ remind them what our HTML is showing, compare against the goal
 
 ---
 
-```html, [.highlight: 11-12]
+`carpark.html`
+
+```html, [.highlight: 3]
 <body>
   <div id="myParkingApp">
+    <h1>Nearest Carpark Availability</h1>
     <input placeholder="Enter a postcode"
            v-model="postcode"
            v-on:keyup.enter="searchPostcode">
@@ -791,20 +768,22 @@ remind them what our HTML is showing
     {{ postcodeY }}
 
     <div v-for="carpark in carparks">
-      {{ carpark.distance }}<br>
-      {{ carpark.address }}<br>
+      {{ carpark }}
     </div>
   </div>
 </body>
 ```
 
-display specific info only
+^ 
 
 ---
+
+`carpark.html`
 
 ```html, [.highlight: 11-13]
 <body>
   <div id="myParkingApp">
+    <h1>Nearest Carpark Availability</h1>
     <input placeholder="Enter a postcode"
            v-model="postcode"
            v-on:keyup.enter="searchPostcode">
@@ -813,31 +792,119 @@ display specific info only
     {{ postcodeY }}
 
     <div v-for="carpark in carparks">
-      Distance: {{ carpark.distance }}m <br>
-      Address: {{ carpark.address }}<br>
-      <br>
+      {{ carpark }}
     </div>
   </div>
 </body>
 ```
 
-nicer formatting
+^ zoom in on the carpark info
 
 ---
 
-```html, [.highlight: 13-15]
+`carpark.html`
+
+```html, [.highlight: 2-3]
+<div v-for="carpark in carparks">
+  {{ carpark.distance }}<br>
+  {{ carpark.address }}<br>
+</div>
+```
+
+^ display specific info only
+
+---
+
+`carpark.html`
+
+```html, [.highlight: 2-3]
+<div v-for="carpark in carparks">
+  Distance: {{ carpark.distance }}m <br>
+  Address: {{ carpark.address }}<br>
+</div>
+```
+
+^ nicer formatting
+
+---
+
+`carpark.html`
+
+```html, [.highlight: 4-6]
+<div v-for="carpark in carparks">
+  Distance: {{ carpark.distance }}m<br>
+  Address: {{ carpark.address }}<br>
+  Total Lots: {{ carpark.total_lots }} <br>
+  Lots Available: {{ carpark.lots_available }} <br>
+  <br>
+</div>
+```
+
+^ additional data we need to add into our carpark object
+
+---
+
+Now the content looks the same, but the styling of the content is different!
+
+---
+
+Recall how we did styles like background-color, text-align
+
+---
+
+Recall how we did styles like background-color, text-align
+
+Doing all the styling like that makes it difficult to read and change our styles
+
+---
+
+Just like our Javascript code, we can put all our styles in a separate file!
+
+`carpark.html`
+
+```html, [.highlight: 4]
+<head>
+  <script src="https://unpkg.com/vue"></script>
+  <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+  <link rel="stylesheet" type="text/css" href="carpark.css" />
+</head>
+```
+
+---
+
+`carpark.css`
+
+```css
+body {
+  background-color: lightsteelblue;
+  text-align: center;
+}
+
+input {
+  width: 50%;
+  font-size: 20px;
+}
+```
+
+
+---
+
+`carpark.html`
+
+```html, [.highlight: 3,9,11]
 <body>
   <div id="myParkingApp">
-    <input placeholder="Enter a postcode"
-           v-model="postcode"
-           v-on:keyup.enter="searchPostcode">
-    {{ postcode }}<br>
-    {{ postcodeX }}<br>
-    {{ postcodeY }}
+    <div id="inputBackground">
+      <h1>Nearest Carpark Availability</h1>
+      <input placeholder="Enter a postcode"
+             v-model="postcode"
+             v-on:keyup.enter="searchPostcode">
+      <br>
+    </div>
 
-    <div v-for="carpark in carparks">
+    <div id="carparkResults" v-for="carpark in carparks">
       Distance: {{ carpark.distance }}m<br>
-      Address: {{ carpark.address }}<br>
+      Address: {{ carpark.address }} <br>
       Total Lots: {{ carpark.total_lots }} <br>
       Lots Available: {{ carpark.lots_available }} <br>
       <br>
@@ -846,133 +913,22 @@ nicer formatting
 </body>
 ```
 
-additional data we need to add into our carpark object
-
 ---
 
-```javascript
-getNearestCarparks: function() {
-  axios.get("https://data.gov.sg/api/action/datastore_search", {
-    params: {
-      resource_id: "139a3035-e624-4f56-b63f-89ae28d4ae4c",
-      limit: 2074
-    }
-  }).then(response => {
-    var carparks = response.data.result.records
-    var nearest_carparks = this.getNearestCarparks(carparks)
-    this.carparks = nearest_carparks
-  })
-},
-```
+`carpark.html`
 
-where we left off for our logic
-
----
-
-```javascript, [.highlight: 10]
-getNearestCarparks: function() {
-  axios.get("https://data.gov.sg/api/action/datastore_search", {
-    params: {
-      resource_id: "139a3035-e624-4f56-b63f-89ae28d4ae4c",
-      limit: 2074
-    }
-  }).then(response => {
-    var carparks = response.data.result.records
-    var nearest_carparks = this.getNearestCarparks(carparks)
-    this.getCarparkAvailability(nearest_carparks)
-  })
-},
-```
-
-set it up for our next function
-
----
-
-```javascript
-methods: {
-  searchPostcode: function() {
-    ...
-  },
-  getNearestCarparks: function() {
-    ...
-  },
-  getNearestCarparks: function(carparks) {
-    ...
-  },
-  getCarparkAvailability: function(carparks) {
-
-  }
-}
-```
-
-new method
-
----
-
-```javascript, [.highlight: 2-6]
-getCarparkAvailability: function(carparks) {
-  axios.get("https://api.data.gov.sg/v1/transport/carpark-availability", {
-    headers: {
-      "api-key": "YOUR_API_KEY"
-    }
-  })
-}
-```
-
-api keys, datagovsg APIs
-
----
-
-```javascript, [.highlight: 6-8]
-getCarparkAvailability: function(carparks) {
-  axios.get("https://api.data.gov.sg/v1/transport/carpark-availability", {
-    headers: {
-      "api-key": "YOUR_API_KEY"
-    }
-  }).then(response => {
-    console.log(response)
-  })
-}
-```
-
-explore the response from API
-
----
-
-```javascript, [.highlight: 7-8]
-getCarparkAvailability: function(carparks) {
-  axios.get("https://api.data.gov.sg/v1/transport/carpark-availability", {
-    headers: {
-      "api-key": "YOUR_API_KEY"
-    }
-  }).then(response => {
-    var carpark_availability = response.data.items[0].carpark_data
-    console.log(carpark_availability)
-  })
-}
+```html, [.highlight: 4]
+<head>
+  <script src="https://unpkg.com/vue"></script>
+  <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+  <link rel="stylesheet" type="text/css" href="carpark-style.css" />
+</head>
 ```
 
 ---
 
-```javascript, [.highlight: 9-11]
-getCarparkAvailability: function(carparks) {
-  axios.get("https://api.data.gov.sg/v1/transport/carpark-availability", {
-    headers: {
-      "api-key": "YOUR_API_KEY"
-    }
-  }).then(response => {
-    var carpark_availability = response.data.items[0].carpark_data
-
-    // Match carpark_number in carpark_availability
-    // with car_park_no in carparks
-    this.carparks = combineCarparkData(carpark_availability, carparks)
-  })
-}
-```
-
-high level description of what we want to do
+Deploying your app to the internet!
 
 ---
 
-04-carparks.html done
-
+That's all folks :)
