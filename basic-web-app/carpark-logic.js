@@ -29,7 +29,7 @@ function addCarparkToPage(carpark) {
 
   var address = document.createTextNode("Address: " + carpark.address)
   var total_lots = document.createTextNode("Total Lots: " + carpark.total_lots)
-  var lots_available = document.createTextNode("Lots Available: " + carpark.lots_available)
+  var lots_available = document.createTextNode("Available Lots: " + carpark.lots_available)
 
   carparkAddress.appendChild(address)
   carparkTotalLots.appendChild(total_lots)
