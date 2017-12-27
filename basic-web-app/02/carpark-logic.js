@@ -1,12 +1,12 @@
 function addCarparkToPage(address, totalLots, availableLots) {
   var carparkAddress = document.getElementById("carparkAddress")
-  carparkAddress.innerHTML = "Address: " + address
+  carparkAddress.innerText = "Address: " + address
 
   var carparkTotalLots = document.getElementById("carparkTotalLots")
-  carparkTotalLots.innerHTML = "Total Lots: " + totalLots
+  carparkTotalLots.innerText = "Total Lots: " + totalLots
 
   var carparkAvailableLots = document.getElementById("carparkAvailableLots")
-  carparkAvailableLots.innerHTML = "Available Lots: " + availableLots
+  carparkAvailableLots.innerText = "Available Lots: " + availableLots
 }
 
 addCarparkToPage("Blk 123 Bishan Avenue 456", 123, 12)
