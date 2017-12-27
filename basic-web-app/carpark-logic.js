@@ -1,6 +1,6 @@
 var postcodeInput = document.getElementById("postcodeInput")
 
-postcodeInput.addEventListener('keydown', function(event) {
+postcodeInput.addEventListener("keydown", function(event) {
   if (event.key === "Enter") {
     var postcode = postcodeInput.value
     searchPostcode(postcode)
