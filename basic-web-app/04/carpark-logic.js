@@ -25,12 +25,7 @@ function searchXY(response) {
 }
 
 function addCarparkToPage(address, totalLots, availableLots) {
-  var carparkAddress = document.getElementById("carparkAddress")
-  carparkAddress.innerText = "Address: " + address
-
-  var carparkTotalLots = document.getElementById("carparkTotalLots")
-  carparkTotalLots.innerText = "Total Lots: " + totalLots
-
-  var carparkAvailableLots = document.getElementById("carparkAvailableLots")
-  carparkAvailableLots.innerText = "Available Lots: " + availableLots
+  document.getElementById("carparkAddress").innerText = "Address: " + address
+  document.getElementById("carparkTotalLots").innerText = "Total Lots: " + totalLots
+  document.getElementById("carparkAvailableLots").innerText = "Available Lots: " + availableLots
 }
