@@ -23,16 +23,16 @@ function searchXY(response) {
   getNearestCarparkTo(searchResult.X, searchResult.Y).then(addCarparkToPage)
 }
 
-function addCarparkToPage(carpark) {
+function addCarparkToPage([address, totalLots, availableLots]) {
   var carparkAddress = document.getElementById("carparkAddress")
   var carparkTotalLots = document.getElementById("carparkTotalLots")
   var carparkAvailableLots = document.getElementById("carparkAvailableLots")
 
-  var address = document.createTextNode("Address: " + carpark.address)
-  var total_lots = document.createTextNode("Total Lots: " + carpark.total_lots)
-  var lots_available = document.createTextNode("Available Lots: " + carpark.lots_available)
+  var addressText = document.createTextNode("Address: " + address)
+  var totalLotsText = document.createTextNode("Total Lots: " + totalLots)
+  var availableLotsText = document.createTextNode("Available Lots: " + availableLots)
 
-  carparkAddress.appendChild(address)
-  carparkTotalLots.appendChild(total_lots)
-  carparkAvailableLots.appendChild(lots_available)
+  carparkAddress.appendChild(addressText)
+  carparkTotalLots.appendChild(totalLotsText)
+  carparkAvailableLots.appendChild(availableLotsText)
 }

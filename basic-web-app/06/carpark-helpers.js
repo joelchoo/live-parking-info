@@ -102,10 +102,7 @@ function getNearestTenCarparks(carparks) {
 
 function getNearestCarparkTo(x, y) {
   return getCarparkList(x, y).then(carparks => {
-    return carparks[0]
+    let carpark = carparks[0]
+    return [carpark.address, carpark.total_lots, carpark.lots_available]
   })
 }
-
-
-
-

@@ -21,19 +21,19 @@ function searchPostcode(postcode) {
 function searchXY(response) {
   var searchResult = response.data.results[0]
   console.log(searchResult)
-  addCarparkToPage()
+  addCarparkToPage("Blk 123 Bishan Avenue 456", 123, 12)
 }
 
-function addCarparkToPage() {
+function addCarparkToPage(address, totalLots, availableLots) {
   var carparkAddress = document.getElementById("carparkAddress")
   var carparkTotalLots = document.getElementById("carparkTotalLots")
   var carparkAvailableLots = document.getElementById("carparkAvailableLots")
 
-  var address = document.createTextNode("Address: Blk 123 Imaginary Road")
-  var total_lots = document.createTextNode("Total Lots: 100")
-  var lots_available = document.createTextNode("Available Lots: 23")
+  var addressText = document.createTextNode("Address: " + address)
+  var totalLotsText = document.createTextNode("Total Lots: " + totalLots)
+  var availableLotsText = document.createTextNode("Available Lots: " + availableLots)
 
-  carparkAddress.appendChild(address)
-  carparkTotalLots.appendChild(total_lots)
-  carparkAvailableLots.appendChild(lots_available)
+  carparkAddress.appendChild(addressText)
+  carparkTotalLots.appendChild(totalLotsText)
+  carparkAvailableLots.appendChild(availableLotsText)
 }
