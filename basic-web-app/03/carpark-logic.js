@@ -10,14 +10,11 @@ postcodeInput.addEventListener("keydown", function(event) {
 
 function addCarparkToPage(address, totalLots, availableLots) {
   var carparkAddress = document.getElementById("carparkAddress")
+  carparkAddress.innerHTML = "Address: " + address
+
   var carparkTotalLots = document.getElementById("carparkTotalLots")
+  carparkTotalLots.innerHTML = "Total Lots: " + totalLots
+
   var carparkAvailableLots = document.getElementById("carparkAvailableLots")
-
-  var addressText = document.createTextNode("Address: " + address)
-  var totalLotsText = document.createTextNode("Total Lots: " + totalLots)
-  var availableLotsText = document.createTextNode("Available Lots: " + availableLots)
-
-  carparkAddress.appendChild(addressText)
-  carparkTotalLots.appendChild(totalLotsText)
-  carparkAvailableLots.appendChild(availableLotsText)
+  carparkAvailableLots.innerHTML = "Available Lots: " + availableLots
 }
