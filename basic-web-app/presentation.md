@@ -119,6 +119,8 @@ Open the HTML file using Google Chrome.
 </body>
 ```
 
+^ explain what divs are and why there is no visible change. I think we should include styles here.
+
 ---
 
 ```html
@@ -263,6 +265,8 @@ function addCarparkToPage(address, totalLots, availableLots) {
 addCarparkToPage("Blk 123 Imaginary Lane", 123, 12)
 ```
 
+^ all function parameters should be strings
+
 ---
 
 # Part 2? Done
@@ -374,6 +378,9 @@ function handleKeydown(event) {
 document.getElementById("postcodeInput").addEventListener("keydown", handleKeydown)
 ```
 
+^ bit confused that handleKeyDown does not take a input parameter
+^ mention that functions need to be defined before they are called
+
 ---
 
 # next step?
@@ -477,6 +484,8 @@ function searchPostcode(postcode) {
 }
 ```
 
+^ why does searchXY not take in an input parameter?
+
 ---
 
 `carpark-logic.js`
@@ -527,6 +536,8 @@ function searchXY(response) {
 }
 
 ```
+
+^ is there no way to avoid callbacks? what about addCarparkToPage(getNearestCarpark(X,Y))? hmmm.. not sure if that is better
 
 ---
 
