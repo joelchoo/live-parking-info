@@ -134,7 +134,19 @@ Open the HTML file using Google Chrome.
 
 ---
 
-insert inline styles here?
+# A short detour
+
+Adding styles to your page!
+
+```html
+<body style="lightskyblue">
+  .
+  .
+  .
+</body>
+```
+
+https://developer.mozilla.org/en-US/docs/Web/CSS/color_value
 
 ---
 
@@ -178,12 +190,12 @@ alert("Hello!")
 
 We want to inject text into our HTML document.
 
-1. Find the place (element) where we want to inject text
+1. Find the place where we want to inject text
 1. Inject the text!
 
 ---
 
-To find the right place (element) to inject the text, we need to give the place (element) a name!
+To find the right place to inject the text, we need to give the place a name!
 
 ---
 
@@ -265,7 +277,7 @@ addCarparkToPage("Blk 123 Imaginary Lane", 123, 12)
 
 ---
 
-# Part 2? Done
+<!-- # Part 2? Done -->
 
 ---
 
@@ -290,9 +302,9 @@ addCarparkToPage("Blk 123 Imaginary Lane", 123, 12)
 
 ```javascript, [.highlight: 9]
 function addCarparkToPage(address, totalLots, availableLots) {
-  document.getElementById("carparkAddress").innerText = "Address: " + address
-  document.getElementById("carparkTotalLots").innerText = "Total Lots: " + totalLots
-  document.getElementById("carparkAvailableLots").innerText = "Available Lots: " + availableLots
+  .
+  .
+  .
 }
 
 addCarparkToPage("Blk 123 Imaginary Lane", 123, 12)
@@ -306,81 +318,59 @@ document.getElementById("postcodeInput")
 
 ```javascript, [.highlight: 9]
 function addCarparkToPage(address, totalLots, availableLots) {
-  document.getElementById("carparkAddress").innerText = "Address: " + address
-  document.getElementById("carparkTotalLots").innerText = "Total Lots: " + totalLots
-  document.getElementById("carparkAvailableLots").innerText = "Available Lots: " + availableLots
+  .
+  .
+  .
 }
 
 addCarparkToPage("Blk 123 Imaginary Lane", 123, 12)
 
-document.getElementById("postcodeInput").addEventListener("keydown", handleKeydown)
+var postcodeInput = document.getElementById("postcodeInput")
 ```
 
 ---
 
 `carpark-logic.js`
 
-```javascript, [.highlight: 7-13]
-function addCarparkToPage(address, totalLots, availableLots) {
-  document.getElementById("carparkAddress").innerText = "Address: " + address
-  document.getElementById("carparkTotalLots").innerText = "Total Lots: " + totalLots
-  document.getElementById("carparkAvailableLots").innerText = "Available Lots: " + availableLots
-}
+```javascript, [.highlight: 3]
+var postcodeInput = document.getElementById("postcodeInput")
 
-addCarparkToPage("Blk 123 Imaginary Lane", 123, 12)
-
-function handleKeydown(event) {
-
-}
-
-document.getElementById("postcodeInput").addEventListener("keydown", handleKeydown)
+postcodeInput.addEventListener("keydown", handleKeydown)
 ```
 
 ---
 
 `carpark-logic.js`
 
-```javascript, [.highlight: 7-11]
-function addCarparkToPage(address, totalLots, availableLots) {
-  document.getElementById("carparkAddress").innerText = "Address: " + address
-  document.getElementById("carparkTotalLots").innerText = "Total Lots: " + totalLots
-  document.getElementById("carparkAvailableLots").innerText = "Available Lots: " + availableLots
-}
+```javascript, [.highlight: 1-7]
+var postcodeInput = document.getElementById("postcodeInput")
 
 function handleKeydown(event) {
   addCarparkToPage("Blk 123 Imaginary Lane", 123, 12)
 }
 
-document.getElementById("postcodeInput").addEventListener("keydown", handleKeydown)
+postcodeInput.addEventListener("keydown", handleKeydown)
 ```
+
+\-\-\-
+
+Remember to remove `addCarparkToPage` from earlier.
 
 ---
 
 `carpark-logic.js`
 
-```javascript, [.highlight: 8-10]
-function addCarparkToPage(address, totalLots, availableLots) {
-  document.getElementById("carparkAddress").innerText = "Address: " + address
-  document.getElementById("carparkTotalLots").innerText = "Total Lots: " + totalLots
-  document.getElementById("carparkAvailableLots").innerText = "Available Lots: " + availableLots
-}
-
+```javascript, [.highlight: 2-4]
 function handleKeydown(event) {
   if (event.key === "Enter") {
-    addCarparkToPage("Blk 123 Imaginary Lane", 123, 12)
+    addCarparkToPage("My Home", 123, 12)
   }
 }
-
-document.getElementById("postcodeInput").addEventListener("keydown", handleKeydown)
 ```
 
 ---
 
-# next step?
-
----
-
-We need to get the postcode that we typed in.
+Now we need to get the postcode that we typed in.
 
 We can do that in a similar way to how we injected the text.
 
@@ -388,44 +378,38 @@ We can do that in a similar way to how we injected the text.
 
 `carpark-logic.js`
 
-```javascript, [.highlight: 9]
-function addCarparkToPage(address, totalLots, availableLots) {
-  document.getElementById("carparkAddress").innerText = "Address: " + address
-  document.getElementById("carparkTotalLots").innerText = "Total Lots: " + totalLots
-  document.getElementById("carparkAvailableLots").innerText = "Available Lots: " + availableLots
-}
-
+```javascript, [.highlight: 3]
 function handleKeydown(event) {
   if (event.key === "Enter") {
-    addCarparkToPage(document.getElementById("postcodeInput").value, 123, 12)
+    addCarparkToPage(postcodeInput.value, 123, 12)
   }
 }
-
-postcodeInput.addEventListener("keydown", handleKeydown)
 ```
+
+---
+
+# Step 3 done!
+
+Now we need to get from the postcode to the nearest carpark.
+
+We'll do that in two steps:
+
+Postcode -> latitude + longitude -> carpark
 
 ---
 
 `carpark-logic.js`
 
-```javascript, [.highlight: 7-15]
-function addCarparkToPage(address, totalLots, availableLots) {
-  document.getElementById("carparkAddress").innerText = "Address: " + address
-  document.getElementById("carparkTotalLots").innerText = "Total Lots: " + totalLots
-  document.getElementById("carparkAvailableLots").innerText = "Available Lots: " + availableLots
-}
-
+```javascript, [.highlight: 1-3, 7]
 function searchPostcode(postcode) {
   addCarparkToPage(postcode, 123, 12)
 }
 
 function handleKeydown(event) {
   if (event.key === "Enter") {
-    searchPostcode(document.getElementById("postcodeInput").value)
+    searchPostcode(postcodeInput.value)
   }
 }
-
-postcodeInput.addEventListener("keydown", handleKeydown)
 ```
 
 ---
@@ -490,6 +474,17 @@ function searchXY(response) {
 
 ---
 
+`carpark-logic.js`
+
+```javascript, [.highlight: 3]
+function searchXY(response) {
+  var searchResult = response.data.results[0]
+  addCarparkToPage("My Home", searchResult.X, searchResult.Y)
+}
+```
+
+---
+
 `index.html`
 
 ```html, [.highlight: 14]
@@ -514,7 +509,7 @@ function searchXY(response) {
 
 `carpark-logic.js`
 
-```javascript, [.highlight: 1, 8]
+```javascript, [.highlight: 9]
 function addCarparkToPage([address, totalLots, availableLots]) {
   .
   .
