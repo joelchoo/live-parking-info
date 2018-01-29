@@ -272,7 +272,7 @@ function addCarparkToPage(address, totalLots, availableLots) {
   document.getElementById("carparkAvailableLots").innerText = "Available Lots: " + availableLots
 }
 
-addCarparkToPage("Blk 123 Imaginary Lane", 123, 12)
+addCarparkToPage("Blk 123 Imaginary Lane", "123", "12")
 ```
 
 ---
@@ -381,7 +381,7 @@ We can do that in a similar way to how we injected the text.
 ```javascript, [.highlight: 3]
 function handleKeydown(event) {
   if (event.key === "Enter") {
-    addCarparkToPage(postcodeInput.value, 123, 12)
+    addCarparkToPage(postcodeInput.innerText, 123, 12)
   }
 }
 ```
@@ -518,7 +518,7 @@ function addCarparkToPage([address, totalLots, availableLots]) {
 
 function searchXY(response) {
   var searchResult = response.data.results[0]
-  getNearestCarparkTo(searchResult.X, searchResult.Y).then(addCarparkToPage)
+  var getNearestCarparkTo(searchResult.X, searchResult.Y).then(addCarparkToPage)
 }
 
 ```
