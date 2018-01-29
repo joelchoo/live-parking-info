@@ -12,12 +12,28 @@
 
 ---
 
+# What you're going to build
+
+![inline](build.png)
+
+---
+
+# Outline
+
+TODO: flesh this out
+
+1. Basic setup and displaying text
+1. 
+
+---
+
 # Setup
+
+TODO: with setup this becomes not necessary
 
 Download and install:
 
 * Atom (https://atom.io/)
-* Zeit Now (https://zeit.co/download) // TODO: replace?
 * Download Google-Drive folder (tinyurl.com/my-parking-app)
 
 ---
@@ -28,13 +44,14 @@ Open the folder using Atom.
 
 Open the HTML file using Google Chrome.
 
----
-
-# What you're going to build
 
 ---
 
-# Displaying some text
+# Let's get coding!
+
+## Displaying some text
+
+![inline](01.png)
 
 ---
 
@@ -147,6 +164,20 @@ Adding styles to your page!
 ```
 
 https://developer.mozilla.org/en-US/docs/Web/CSS/color_value
+
+---
+
+# A quick recap
+
+* HTML files in browser are webpages
+* HTML tells the browser what to display 
+* HTML tags, attributes
+
+---
+
+# What's next
+
+* Javascript - adding interactivity + logic
 
 ---
 
@@ -277,7 +308,18 @@ addCarparkToPage("Blk 123 Imaginary Lane", 123, 12)
 
 ---
 
-<!-- # Part 2? Done -->
+# Recap
+
+* Javascript adds interactivity
+* Javascript links to HTML using `getElementById`
+* A function is a snippet of code that is grouped together
+* Calling a function runs the code in it
+
+---
+
+# What's next?
+
+* Handle the input typed in
 
 ---
 
@@ -388,13 +430,21 @@ function handleKeydown(event) {
 
 ---
 
-# Step 3 done!
+# Recap
 
-Now we need to get from the postcode to the nearest carpark.
+* React to user input by registering **event listeners**
+
+---
+
+# What's next?
+
+Now we need to use the postcode to find the nearest carpark.
 
 We'll do that in two steps:
 
-Postcode -> latitude + longitude -> carpark
+1) Postcode -> Latitude + Longitude
+
+2) Latitude + Longitude -> Carpark
 
 ---
 
@@ -419,6 +469,22 @@ We need to take the postcode and find the nearest carpark to it.
 First, we will convert the postcode to X and Y values (similar to latitude and longitude).
 
 To do that, we need to make an API call.
+
+---
+
+# What is an API call?
+
+* Way for apps to communicate (over the internet)
+* i.e. a phone call between apps
+
+---
+
+# Our API call
+
+* Send over the postcode
+* Receive X and Y values in the response
+
+https://docs.onemap.sg/#onemap-rest-apis 
 
 ---
 
@@ -485,6 +551,10 @@ function searchXY(response) {
 
 ---
 
+Now we want to get the nearest carpark to that X and Y value.
+
+---
+
 `index.html`
 
 ```html, [.highlight: 14]
@@ -525,7 +595,17 @@ function searchXY(response) {
 
 ---
 
-All logic done!
+# Recap
+
+* Made API call to convert postcode to X and Y
+* Use helper function to get the nearest carpark
+
+---
+
+# What's next?
+
+* Content and logic is all done!
+* Next - styling your site!
 
 ---
 
@@ -604,4 +684,9 @@ All logic done!
 
 ---
 
-Done!
+# Deployment
+
+1. Go to `https://www.bitballoon.com/`
+1. Drag and drop the app folder on to the site.
+1. Wait for it to process your data
+1. Voila! Your site has been hosted!
