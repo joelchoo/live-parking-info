@@ -303,7 +303,7 @@ function addCarparkToPage(address, totalLots, availableLots) {
   document.getElementById("carparkAvailableLots").innerText = "Available Lots: " + availableLots
 }
 
-addCarparkToPage("Blk 123 Imaginary Lane", 123, 12)
+addCarparkToPage("Blk 123 Imaginary Lane", "123", "12")
 ```
 
 ---
@@ -349,7 +349,7 @@ function addCarparkToPage(address, totalLots, availableLots) {
   .
 }
 
-addCarparkToPage("Blk 123 Imaginary Lane", 123, 12)
+addCarparkToPage("Blk 123 Imaginary Lane", "123", "12")
 
 document.getElementById("postcodeInput")
 ```
@@ -365,7 +365,7 @@ function addCarparkToPage(address, totalLots, availableLots) {
   .
 }
 
-addCarparkToPage("Blk 123 Imaginary Lane", 123, 12)
+addCarparkToPage("Blk 123 Imaginary Lane", "123", "12")
 
 var postcodeInput = document.getElementById("postcodeInput")
 ```
@@ -388,7 +388,7 @@ postcodeInput.addEventListener("keydown", handleKeydown)
 var postcodeInput = document.getElementById("postcodeInput")
 
 function handleKeydown(event) {
-  addCarparkToPage("Blk 123 Imaginary Lane", 123, 12)
+  addCarparkToPage("Blk 123 Imaginary Lane", "123", "12")
 }
 
 postcodeInput.addEventListener("keydown", handleKeydown)
@@ -405,7 +405,7 @@ Remember to remove `addCarparkToPage` from earlier.
 ```javascript, [.highlight: 2-4]
 function handleKeydown(event) {
   if (event.key === "Enter") {
-    addCarparkToPage("My Home", 123, 12)
+    addCarparkToPage("My Home", "123", "12")
   }
 }
 ```
@@ -423,7 +423,7 @@ We can do that in a similar way to how we injected the text.
 ```javascript, [.highlight: 3]
 function handleKeydown(event) {
   if (event.key === "Enter") {
-    addCarparkToPage(postcodeInput.value, 123, 12)
+    addCarparkToPage(postcodeInput.value, "123", "12")
   }
 }
 ```
@@ -452,7 +452,7 @@ We'll do that in two steps:
 
 ```javascript, [.highlight: 1-3, 7]
 function searchPostcode(postcode) {
-  addCarparkToPage(postcode, 123, 12)
+  addCarparkToPage(postcode, "123", "12")
 }
 
 function handleKeydown(event) {
@@ -513,7 +513,7 @@ https://docs.onemap.sg/#onemap-rest-apis
 
 ```javascript
 function searchXY(response) {
-  addCarparkToPage("My Home", 123, 12)
+  addCarparkToPage("My Home", "123", "12")
 }
 
 function searchPostcode(postcode) {
@@ -534,7 +534,7 @@ function searchPostcode(postcode) {
 ```javascript, [.highlight: 2]
 function searchXY(response) {
   var searchResult = response.data.results[0]
-  addCarparkToPage("My Home", 123, 12)
+  addCarparkToPage("My Home", "123", "12")
 }
 ```
 

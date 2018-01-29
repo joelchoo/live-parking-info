@@ -8,7 +8,7 @@ var postcodeInput = document.getElementById("postcodeInput")
 
 function handleKeydown(event) {
   if (event.key === "Enter") {
-    addCarparkToPage(postcodeInput.value, 123, 12)
+    addCarparkToPage(postcodeInput.value, "123", "12")
   }
 }
 

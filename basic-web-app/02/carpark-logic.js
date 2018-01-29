@@ -4,4 +4,4 @@ function addCarparkToPage(address, totalLots, availableLots) {
   document.getElementById("carparkAvailableLots").innerText = "Available Lots: " + availableLots
 }
 
-addCarparkToPage("Blk 123 Bishan Avenue 456", 123, 12)
+addCarparkToPage("Blk 123 Bishan Avenue 456", "123", "12")
