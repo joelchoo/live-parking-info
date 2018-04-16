@@ -1,16 +1,22 @@
 slidenumbers: true
 
-# Build your own web app
+# Coding for Policymakers
 
 ---
 
-# Why?
+# Why digital matters
 
+> What government can and should look like in a digital age is a real and pressing question. This is why **digital transformation** is such a buzz word. 
+--David Eaves, Harvard Kennedy School
+
+---
+
+# Objectives
+
+* Improve intuition + understanding of digital tech
+* Enable policymakers to have deeper and more technical conversations with each other
 * NOT to become a software engineer
-* Show you basics of how web apps work
-* Have more meaningful discussion about web applications (understand the lingo)
-* Give you confidence to learn more/explore about code!
-* Give you something real to take home!
+* NOT to learn to code
 
 ---
 
