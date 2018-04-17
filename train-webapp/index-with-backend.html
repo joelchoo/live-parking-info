@@ -7,15 +7,14 @@
 </body>
 
 <script>
-var id = "bff0dc76686626eca31e1dcb18ecfe11"
-var url = "https://lvz9c27o80.execute-api.ap-southeast-1.amazonaws.com/v1/status?id=" + id
+var url = "http://localhost:3000"
 
 fetch(url).then(processResponse)
 
 function processResponse(response) {
   response.json().then(function(data) {
-    var trainTime = "Last Updated: " + data.timestamp
-    var trainLocation = "Current Location: " + data.current_station.station
+    var trainTime = "Last Updated: " + data.time
+    var trainLocation = "Current Location: " + data.location
 
     document.getElementById("train-time").innerText = trainTime
     document.getElementById("train-location").innerText = trainLocation
