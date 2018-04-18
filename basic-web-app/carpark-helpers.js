@@ -102,3 +102,11 @@ function getNearestCarparkTo(x, y) {
     return [carpark.address, carpark.total_lots, carpark.lots_available]
   })
 }
+
+
+try {
+  var axios = require("axios")
+  module.exports = getNearestCarparkTo
+} catch(error) {
+  console.log("")
+}
