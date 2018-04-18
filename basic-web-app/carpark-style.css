@@ -1,70 +1,26 @@
 @import url('https://fonts.googleapis.com/css?family=Mandali');
 @import url('https://fonts.googleapis.com/css?family=PT+Sans+Caption');
 
-#inputBackground {
-  background-image: url("background-image.png");; 
-  height:35%;
-  max-height:20em;
-  padding-left: 0px;
-  border-left: 0px;
-  margin-bottom: 40px;
-}
-
-h1 {
+body {
   font-family: "Mandali";
-  font-size: 2em;
+  text-align: center;
+  background-image: url("background-image.png");
+  background-repeat: no-repeat;
   color: #F2F2F2;
-  margin: auto;
-  padding-left: 15%;
-  font-style: normal;
-  padding-top: 85px;
 }
 
 input {
   width: 70%;
-  font-family: "PT Sans Caption";
-  border: 1px solid #ccc;
   border-radius: 4px;
-  font-size: 1.5em;
-  display: block;
-  margin: auto;
-  color: #023417;
+  font-size: 20px;
   padding: 12px 20px;
+  margin-bottom: 30px;
 }
 
-#nearestCarpark {
-  font-family: "Mandali";
-  font-size: 1em;
-  padding-left: 15%;
-}
-
-
-@media only screen and (max-width: 720px) and (orientation: portrait) {
-    h1 {
-      font-size: 1.5em;
-    }
-    #nearestCarpark{
-      font-size: 0.8em;
-    }
-    input {
-      font-size: 1.0em;
-    }
-    #inputBackground {
-      height: 30%;
-    }
-}
-
-@media only screen and (max-width: 1080px) and (orientation: landscape) {
-    h1 {
-      font-size: 1.5em;
-    }
-    #nearestCarpark{
-      font-size: 0.8em;
-    }
-    input {
-      font-size: 1.0em;
-    }
-    #inputBackground {
-      height: 40%;
-    }
+@media only screen  
+  and (max-device-width: 480px) {
+  body {
+    background-image: unset;
+    color: #000;
+  }
 }
