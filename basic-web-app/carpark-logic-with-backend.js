@@ -6,7 +6,16 @@ function addCarparkToPage([address, totalLots, availableLots]) {
 
 function searchXY(response) {
   var searchResult = response.data.results[0]
-  addCarparkToPage(["Blk 123 Bishan Avenue 456", searchResult.X, searchResult.Y])
+
+  var url = "http://localhost:3000"
+  axios.get(url, {
+    params: {
+      x: searchResult.X,
+      y: searchResult.Y
+    }
+  }).then(response => {
+    addCarparkToPage(response.data)
+  })
 }
 
 function searchLocation(location) {

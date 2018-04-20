@@ -14,11 +14,7 @@ async function getCarparkList(x, y) {
   }
 
   async function getCarparkAvailability() {
-    return await axios.get("https://api.data.gov.sg/v1/transport/carpark-availability", {
-      headers: {
-        "api-key": ""
-      }
-    }).then(response => {
+    return await axios.get("https://api.data.gov.sg/v1/transport/carpark-availability", {}).then(response => {
       var carparkAvailability = response.data.items[0].carpark_data
       return carparkAvailability
     })

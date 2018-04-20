@@ -9,23 +9,23 @@ function searchXY(response) {
   getNearestCarparkTo(searchResult.X, searchResult.Y).then(addCarparkToPage)
 }
 
-function searchPostcode(postcode) {
+function searchLocation(location) {
   axios.get("https://developers.onemap.sg/commonapi/search", {
     params: {
-      searchVal: postcode,
+      searchVal: location,
       returnGeom: "Y",
       getAddrDetails: "N"
     }
   }).then(searchXY)
 }
 
-var postcodeInput = document.getElementById("postcodeInput")
+var locationInput = document.getElementById("locationInput")
 
 function handleKeydown(event) {
   if (event.key === "Enter") {
-    var postcode = postcodeInput.value
-    searchPostcode(postcode)
+    var location = locationInput.value
+    searchLocation(location)
   }
 }
 
-postcodeInput.addEventListener("keydown", handleKeydown)
+locationInput.addEventListener("keydown", handleKeydown)

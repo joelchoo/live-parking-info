@@ -1,15 +1,15 @@
-function addCarparkToPage(address, totalLots, availableLots) {
+function addCarparkToPage([address, totalLots, availableLots]) {
   document.getElementById("carparkAddress").innerText = "Address: " + address
   document.getElementById("carparkTotalLots").innerText = "Total Lots: " + totalLots
   document.getElementById("carparkAvailableLots").innerText = "Available Lots: " + availableLots
 }
 
-var postcodeInput = document.getElementById("postcodeInput")
+var locationInput = document.getElementById("locationInput")
 
 function handleKeydown(event) {
   if (event.key === "Enter") {
-    addCarparkToPage(postcodeInput.value, "123", "12")
+    addCarparkToPage([locationInput.value, "123", "12"])
   }
 }
 
-postcodeInput.addEventListener("keydown", handleKeydown)
+locationInput.addEventListener("keydown", handleKeydown)
