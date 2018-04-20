@@ -3,20 +3,42 @@ slidenumbers: true
 # Coding for Policymakers
 
 ---
-
+<!-- 
 # Why digital matters
 
 > What government can and should look like in a digital age is a real and pressing question. This is why **digital transformation** is such a buzz word. 
 --David Eaves, Harvard Kennedy School
 
 ---
-
+ -->
 # Objectives
 
+* Understand iterative product development
+* Learn about web applications
+  * Frontend (HTML, Javascript, CSS)
+  * APIs
+  * Backend/server
+
+<!-- 
 * Improve intuition + understanding of digital tech
 * Enable policymakers to have deeper and more technical conversations with each other
 * NOT to become a software engineer
-* NOT to learn to code
+* NOT to learn to code -->
+
+---
+
+# Overview
+
+* Sharing on parking.sg
+* Hands on coding workshop
+
+---
+
+# Sharing on parking.sg
+
+---
+
+# Hands on coding workshop
 
 ---
 
@@ -26,13 +48,14 @@ slidenumbers: true
 
 ---
 
-# Outline
+# Hands on workshop
 
 1. What is a website?
 1. Displaying text
 1. Adding interaction
 1. Communicating with other apps
 1. Adding styles!
+1. A simple server
 
 ---
 
@@ -41,13 +64,9 @@ slidenumbers: true
 * Slides are provided as handouts
 * You can also refer to digital copy of the slides
 
-<!-- * Copy paste out from the slides -->
-
 ---
 
-# Let's get started!
-
-## Displaying some text
+# Step 1 - Displaying some text
 
 ![inline 150%](01.png)
 
@@ -65,7 +84,7 @@ Open the `index.html` file using Google Chrome.
 hello
 ```
 
-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-
+\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-
 
 * Save the file and refresh the page in Chrome
 * Websites are just text files interpreted by the browser
@@ -78,6 +97,14 @@ hello
   hello
 </body>
 ```
+
+\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-
+
+* HTML uses tags to differentiate between different parts of the page
+* `<body>` - opening tag for the page's content
+* `</body>` - closing tag
+* Everything between opening and closing tags is the tag's content
+
 
 ^ html, body, opening and closing tags
 
@@ -99,10 +126,10 @@ hello
 </body>
 ```
 
-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-
+\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-
 
 * HTML has a specific way of formatting content
-* What you see is not what you get
+* What you see is not necessarily what you get
 
 ^ html does not care about your file. just a structure
 
@@ -116,7 +143,7 @@ hello
 </body>
 ```
 
-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-
+\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-
 
 * The `h1` tag makes the content inside become a **header**
 
@@ -139,7 +166,7 @@ hello
 </body>
 ```
 
-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-
+\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-
 
 * `input` creates an input box
 * `input` is a basic element, does not require a closing tag
@@ -149,11 +176,11 @@ hello
 ```html, [.highlight: 3]
 <body>
   <h1>Nearest Carpark Availability</h1>
-  <input placeholder="Enter a postcode">
+  <input placeholder="Enter a location">
 </body>
 ```
 
-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-
+\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-
 
 * HTML elements/tags can have extra **attributes** given to them
 * These **attributes** can change the behaviour and appearance of the element
@@ -163,22 +190,22 @@ hello
 ```html, [.highlight: 5]
 <body>
   <h1>Nearest Carpark Availability</h1>
-  <input placeholder="Enter a postcode">
+  <input placeholder="Enter a location">
 
   <div>Hello!</div>
 </body>
 ```
 
-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-
+\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-
 
-`div` is a generic container
+`div`s are containers for content
 
 ---
 
 ```html
 <body>
   <h1>Nearest Carpark Availability</h1>
-  <input placeholder="Enter a postcode">
+  <input placeholder="Enter a location">
 
   <div>Address: Blk 123 Imaginary Road</div>
   <div>Total Lots: 456</div>
@@ -186,7 +213,7 @@ hello
 </body>
 ```
 
-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-
+\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-
 
 `div`s can be used to organise and arrange content
 
@@ -208,7 +235,7 @@ Adding styles to your page!
 
 ---
 
-# A quick recap
+# Step 1 - A quick recap
 
 * HTML files in browser are webpages
 * HTML tells the browser what to display 
@@ -216,9 +243,9 @@ Adding styles to your page!
 
 ---
 
-# What's next
+# What's next:
 
-Javascript
+## Adding interaction to our page!
 
 ---
 
@@ -235,7 +262,7 @@ Javascript
 ```html, [.highlight: 10]
 <body>
   <h1>Nearest Carpark Availability</h1>
-  <input placeholder="Enter a postcode">
+  <input placeholder="Enter a location">
 
   <div>Address: Blk 123 Imaginary Road</div>
   <div>Total Lots: 456</div>
@@ -245,16 +272,16 @@ Javascript
 <script> alert("Hello!") </script>
 ```
 
-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-
+\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-
 
-`script` tag content is javascript code that the browser will execute
+`script` content is javascript code that the browser will execute
 
 ---
 
 ```html, [.highlight: 10]
 <body>
   <h1>Nearest Carpark Availability</h1>
-  <input placeholder="Enter a postcode">
+  <input placeholder="Enter a location">
 
   <div>Address: Blk 123 Imaginary Road</div>
   <div>Total Lots: 456</div>
@@ -264,7 +291,7 @@ Javascript
 <script src="carpark-logic.js"></script>
 ```
 
-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-
+\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-
 
 To make it simpler, we can put the javascript code into another file
 
@@ -276,9 +303,9 @@ To make it simpler, we can put the javascript code into another file
 alert("Hello!")
 ```
 
-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-
+\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-
 
-Note: The slide title is the file you should be editing
+Note: For subsequent slides, the slide title is the file you should be editing
 
 
 ---
@@ -303,7 +330,7 @@ To find the right location to inject the text, we need to give the location a na
 ```html, [.highlight: 5]
 <body>
   <h1>Nearest Carpark Availability</h1>
-  <input placeholder="Enter a postcode">
+  <input placeholder="Enter a location">
 
   <div id="carparkAddress"></div>
   <div>Total Lots: 456</div>
@@ -312,6 +339,8 @@ To find the right location to inject the text, we need to give the location a na
 
 <script src="carpark-logic.js"></script>
 ```
+
+Refresh the page - the address should have disappeared
 
 ---
 
@@ -322,10 +351,11 @@ document.getElementById("carparkAddress").innerText =
   "Address: Blk 123 Imaginary Road"
 ```
 
-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-
+\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-
 
-* `document.getElementById` allows the javascript to find the right location in the HTML
+* `document.getElementById` allows the javascript to find the right element in the HTML
 * Setting `innerText` changes the content of the HTML element
+* Refresh the page and the address should reappear
 
 ---
 
@@ -334,7 +364,7 @@ document.getElementById("carparkAddress").innerText =
 ```html, [.highlight: 5-7]
 <body>
   <h1>Nearest Carpark Availability</h1>
-  <input placeholder="Enter a postcode">
+  <input placeholder="Enter a location">
 
   <div id="carparkAddress"></div>
   <div id="carparkTotalLots"></div>
@@ -343,6 +373,8 @@ document.getElementById("carparkAddress").innerText =
 
 <script src="carpark-logic.js"></script>
 ```
+
+Refresh the page - total and available lots should have disappeared
 
 ---
 
@@ -357,12 +389,14 @@ document.getElementById("carparkAvailableLots").innerText =
   "Available Lots: 78"
 ```
 
+Refresh the page - total and available lots should reappear
+
 ---
 
 `carpark-logic.js`
 
 ```javascript
-function addCarparkToPage(address, totalLots, availableLots) {
+function addCarparkToPage([address, totalLots, availableLots]) {
   document.getElementById("carparkAddress").innerText =
     "Address: " + address
   document.getElementById("carparkTotalLots").innerText =
@@ -372,14 +406,18 @@ function addCarparkToPage(address, totalLots, availableLots) {
 }
 ```
 
-Functions are a way to group code blocks together
+**Introducing functions**
+
+Functions are like recipes - they're a way to group some instructions together
+
+
 
 ---
 
 `carpark-logic.js`
 
-```javascript
-function addCarparkToPage(address, totalLots, availableLots) {
+```javascript, [.highlight: 1]
+function addCarparkToPage([address, totalLots, availableLots]) {
   document.getElementById("carparkAddress").innerText =
     "Address: " + address
   document.getElementById("carparkTotalLots").innerText =
@@ -391,21 +429,6 @@ function addCarparkToPage(address, totalLots, availableLots) {
 
 `addCarparkToPage` is the function name
 
----
-
-`carpark-logic.js`
-
-```javascript
-function addCarparkToPage(address, totalLots, availableLots) {
-  document.getElementById("carparkAddress").innerText =
-    "Address: " + address
-  document.getElementById("carparkTotalLots").innerText =
-    "Total Lots: " + totalLots
-  document.getElementById("carparkAvailableLots").innerText =
-    "Available Lots: " + availableLots
-}
-```
-
 `address, totalLots, availableLots` are function **inputs**
 
 ---
@@ -413,7 +436,7 @@ function addCarparkToPage(address, totalLots, availableLots) {
 `carpark-logic.js`
 
 ```javascript
-function addCarparkToPage(address, totalLots, availableLots) {
+function addCarparkToPage([address, totalLots, availableLots]) {
   document.getElementById("carparkAddress").innerText =
     "Address: " + address
   document.getElementById("carparkTotalLots").innerText =
@@ -422,11 +445,13 @@ function addCarparkToPage(address, totalLots, availableLots) {
     "Available Lots: " + availableLots
 }
 
-addCarparkToPage("Blk 123", "456", "78")
+addCarparkToPage(["Blk 123", "456", "78"]) // run the function
 ```
 
-* Defining the function only groups that block of code
-* To run the function, we need to **call** it (last line)
+Defining VS running the function
+Writing VS cooking the recipe
+
+Refresh the page - the text should reappear
 
 ---
 
@@ -434,7 +459,7 @@ addCarparkToPage("Blk 123", "456", "78")
 
 * Javascript adds interaction
 * Javascript links to HTML using `getElementById`
-* A function is a snippet of code that is grouped together
+* A function is a bunch of code that's grouped together
 * Calling a function runs the code in it
 
 ---
@@ -450,7 +475,7 @@ Handle the input that has been typed in
 ```html, [.highlight: 3]
 <body>
   <h1>Nearest Carpark Availability</h1>
-  <input id="postcodeInput" placeholder="Enter a postcode">
+  <input id="locationInput" placeholder="Enter a location">
 
   <div id="carparkAddress"></div>
   <div id="carparkTotalLots"></div>
@@ -460,8 +485,6 @@ Handle the input that has been typed in
 <script src="carpark-logic.js"></script>
 ```
 
-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-
-
 Give the input element an ID
 
 ---
@@ -469,18 +492,16 @@ Give the input element an ID
 `carpark-logic.js`
 
 ```javascript, [.highlight: 9]
-function addCarparkToPage(address, totalLots, availableLots) {
+function addCarparkToPage([address, totalLots, availableLots]) {
   .
   .
   .
 }
 
-addCarparkToPage("Blk 123", "456", "78")
+addCarparkToPage(["Blk 123", "456", "78"])
 
-document.getElementById("postcodeInput")
+document.getElementById("locationInput")
 ```
-
-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-
 
 Retrieve the input element using its ID
 
@@ -489,32 +510,33 @@ Retrieve the input element using its ID
 `carpark-logic.js`
 
 ```javascript, [.highlight: 9]
-function addCarparkToPage(address, totalLots, availableLots) {
+function addCarparkToPage([address, totalLots, availableLots]) {
   .
   .
   .
 }
 
-addCarparkToPage("Blk 123", "456", "78")
+addCarparkToPage(["Blk 123", "456", "78"])
 
-var postcodeInput = document.getElementById("postcodeInput")
+var locationInput = document.getElementById("locationInput")
 ```
 
-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-
+`var` is short for variable
 
-`var` is short for variable; a name for that value
+Saving the element into the `locationInput` variable
+
+Like saving your word document into `Document.docx`
 
 ---
 
 `carpark-logic.js`
 
 ```javascript, [.highlight: 3]
-var postcodeInput = document.getElementById("postcodeInput")
+var locationInput = document.getElementById("locationInput")
 
-postcodeInput.addEventListener("keydown", handleKeydown)
+locationInput.addEventListener("keydown", handleKeydown)
 ```
 
-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-
 
 * React to user typing in the input box by adding an **event listener** (`addEventListener`)
 * `handleKeydown` is a function that will be called when the user types something (`keydown`)
@@ -524,18 +546,20 @@ postcodeInput.addEventListener("keydown", handleKeydown)
 `carpark-logic.js`
 
 ```javascript, [.highlight: 1-7]
-var postcodeInput = document.getElementById("postcodeInput")
+var locationInput = document.getElementById("locationInput")
 
 function handleKeydown(event) {
-  addCarparkToPage("Blk 123", "456", "78")
+  addCarparkToPage(["Blk 123", "456", "78"])
 }
 
-postcodeInput.addEventListener("keydown", handleKeydown)
+locationInput.addEventListener("keydown", handleKeydown)
 ```
 
-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-
+Remember to remove `addCarparkToPage` from earlier
 
-Remember to remove `addCarparkToPage` from earlier.
+Refresh the page - the text should disappear
+
+Type into the input box - the text should reappear
 
 ---
 
@@ -544,12 +568,10 @@ Remember to remove `addCarparkToPage` from earlier.
 ```javascript, [.highlight: 2-4]
 function handleKeydown(event) {
   if (event.key === "Enter") {
-    addCarparkToPage("Blk 123", "456", "78")
+    addCarparkToPage(["Blk 123", "456", "78"])
   }
 }
 ```
-
-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-
 
 We only want to care about when the `Enter` key is pressed
 
@@ -557,9 +579,11 @@ We only want to care about when the `Enter` key is pressed
 
 # What's next
 
-Now we need to get the postcode that we typed in.
+Now we need to get the location that we typed in.
 
 We can do that in a similar way to how we injected the text.
+
+Find the input element, and extract it's content.
 
 ---
 
@@ -568,14 +592,12 @@ We can do that in a similar way to how we injected the text.
 ```javascript, [.highlight: 3]
 function handleKeydown(event) {
   if (event.key === "Enter") {
-    addCarparkToPage(postcodeInput.value, "456", "78")
+    addCarparkToPage([locationInput.value, "456", "78"])
   }
 }
 ```
 
-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-
-
-`postcodeInput.value` gets the text that has been typed into the input box
+`locationInput.value` gets the text that has been typed into the input box
 
 ---
 
@@ -589,39 +611,39 @@ function handleKeydown(event) {
 
 # What's next?
 
-Now we need to use the postcode to find the nearest carpark.
+Now we need to use the location to find the nearest carpark.
 
 We'll do that in two steps:
 
-1) Postcode -> Latitude + Longitude
+1) location -> X and Y (like latitude and longitude)
 
-2) Latitude + Longitude -> Carpark
+2) X and Y -> Carpark
 
 ---
 
 `carpark-logic.js`
 
 ```javascript, [.highlight: 1-3, 7]
-function searchPostcode(postcode) {
-  addCarparkToPage(postcode, "456", "78")
+function searchLocation(location) {
+  addCarparkToPage([location, "456", "78"])
 }
 
 function handleKeydown(event) {
   if (event.key === "Enter") {
-    searchPostcode(postcodeInput.value)
+    searchLocation(locationInput.value)
   }
 }
 ```
 
-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-
+Create the `searchLocation` function
 
-Create the `searchPostcode` function
+TODO: make transition less awkward
 
 ---
 
-We need to take the postcode and find the nearest carpark to it.
+We need to take the location and find the nearest carpark to it.
 
-First, we will convert the postcode to X and Y values (similar to latitude and longitude).
+First, we will convert the location to X and Y values.
 
 To do that, we need to make an API call.
 
@@ -630,7 +652,7 @@ To do that, we need to make an API call.
 # What is an API call?
 
 * Way for apps to communicate (over the internet)
-* An API call is like a phone call to a wise man who has the answers to your questions
+* An API call is like a phone call to a wise person who has the answers to your questions
   * "What time is it now?"
   * "Where are all the carparks in Singapore?"
   * "What is the current price of Bitcoin?"
@@ -647,7 +669,7 @@ To do that, we need to make an API call.
 
 # Our API call
 
-"What are the X and Y coordinates of this postcode?"
+"What are the X and Y coordinates of this location?"
 
 [https://docs.onemap.sg/#onemap-rest-apis](https://docs.onemap.sg/#onemap-rest-apis)
 
@@ -676,13 +698,13 @@ To do that, we need to make an API call.
 
 ```javascript
 function searchXY(response) {
-  addCarparkToPage("Blk 123", "456", "78")
+  addCarparkToPage(["Blk 123", "456", "78"])
 }
 
-function searchPostcode(postcode) {
+function searchLocation(location) {
   axios.get("https://developers.onemap.sg/commonapi/search", {
     params: {
-      searchVal: postcode,
+      searchVal: location,
       returnGeom: "Y",
       getAddrDetails: "N"
     }
@@ -697,11 +719,9 @@ function searchPostcode(postcode) {
 ```javascript, [.highlight: 2]
 function searchXY(response) {
   var searchResult = response.data.results[0]
-  addCarparkToPage("Blk 123", "456", "78")
+  addCarparkToPage(["Blk 123", "456", "78"])
 }
 ```
-
-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-
 
 Extract the search result from the `response`
 
@@ -712,11 +732,9 @@ Extract the search result from the `response`
 ```javascript, [.highlight: 3]
 function searchXY(response) {
   var searchResult = response.data.results[0]
-  addCarparkToPage("Blk 123", searchResult.X, searchResult.Y)
+  addCarparkToPage(["Blk 123", searchResult.X, searchResult.Y])
 }
 ```
-
-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-
 
 Display the search result for us to check that it is correct
 
@@ -750,13 +768,7 @@ Import my helper API
 
 `carpark-logic.js`
 
-```javascript, [.highlight: 1, 9-10]
-function addCarparkToPage([address, totalLots, availableLots]) {
-  .
-  .
-  .
-}
-
+```javascript, [.highlight: 3-4]
 function searchXY(response) {
   var searchResult = response.data.results[0]
   getNearestCarparkTo(searchResult.X, searchResult.Y)
@@ -771,7 +783,7 @@ Use my helper API
 
 # Recap
 
-* Made API call to convert postcode to X and Y
+* Made API call to convert location to X and Y
 * Use helper API to get the nearest carpark
 
 ---
@@ -793,7 +805,7 @@ Use my helper API
 
 <body>
   <h1>Nearest Carpark Availability</h1>
-  <input id="postcodeInput" placeholder="Enter a postcode">
+  <input id="locationInput" placeholder="Enter a location">
 
   <div id="carparkAddress"></div>
   <div id="carparkTotalLots"></div>
@@ -806,81 +818,34 @@ Use my helper API
 
 ---
 
-`index.html`
+`carpark-style.css`
 
-```html, [.highlight: 7-10]
-<head>
-  <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
-  <link rel="stylesheet" type="text/css" href="carpark-style.css"></link>
-</head>
+```css
+@import url('https://fonts.googleapis.com/css?family=Mandali');
 
-<body>
-  <div id="inputBackground">
-    <h1>Nearest Carpark Availability</h1>
-    <input id="postcodeInput" placeholder="Enter a postcode">
-  </div>
+body {
+  font-family: "Mandali";
+  text-align: center;
+  background-image: url("background-image.png");
+  background-repeat: no-repeat;
+  color: #F2F2F2;
+}
 
-  <div id="carparkAddress"></div>
-  <div id="carparkTotalLots"></div>
-  <div id="carparkAvailableLots"></div>
-</body>
+input {
+  width: 70%;
+  border-radius: 4px;
+  font-size: 20px;
+  padding: 12px 20px;
+  margin-bottom: 30px;
+}
 
-<script src="carpark-helpers.js"></script>
-<script src="carpark-logic.js"></script>
-```
-
----
-
-`index.html`
-
-```html, [.highlight: 12-16]
-<head>
-  <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
-  <link rel="stylesheet" type="text/css" href="carpark-style.css"></link>
-</head>
-
-<body>
-  <div id="inputBackground">
-    <h1>Nearest Carpark Availability</h1>
-    <input id="postcodeInput" placeholder="Enter a postcode">
-  </div>
-
-  <div id="nearestCarpark">
-    <div id="carparkAddress"></div>
-    <div id="carparkTotalLots"></div>
-    <div id="carparkAvailableLots"></div>
-  </div>
-</body>
-
-<script src="carpark-helpers.js"></script>
-<script src="carpark-logic.js"></script>
-```
-
----
-
-`index.html`
-
-```html
-<head>
-  <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
-  <link rel="stylesheet" type="text/css" href="carpark-style.css"></link>
-</head>
-
-<body>
-  <div id="inputBackground">
-    <h1>Nearest Carpark Availability</h1>
-    <input id="postcodeInput" placeholder="Enter a postcode">
-  </div>
-
-  <div id="nearestCarpark">
-    <div id="carparkAddress"></div>
-    <div id="carparkTotalLots"></div>
-    <div id="carparkAvailableLots"></div>
-  </div>
-</body>
-
-<script src="carpark-helpers.js"></script>
-<script src="carpark-logic.js"></script>
+@media only screen  
+  and (max-device-width: 480px) {
+  body {
+    background-image: unset;
+    color: #000;
+  }
+}
 ```
 
 ---
@@ -895,7 +860,7 @@ Use my helper API
 
 ---
 
-# Last Step!
+# Next Step!
 
 * Deploying your app to the internet
 * Up to now, your website is just on your computer
@@ -912,12 +877,253 @@ Use my helper API
 
 ---
 
-# What you've learnt
+# Recap
 
 1. What a website consists of
 1. HTML + Javascript + CSS
 1. API calls - communication over the internet
 1. Deploying websites
+
+---
+
+# Next Step - Building your own API
+
+* Build a simple backend to serve a simple API
+* We'll replace my helper API with a real API
+
+---
+
+Create a new file called `backend.js`
+
+`backend.js`
+
+```javascript
+var express = require("express")
+
+var app = express()
+
+app.listen(3000, function () {
+  console.log("Server running...")
+})
+```
+
+Open the command line (TAs can help!)
+
+Type `node backend.js` and hit enter
+
+You should see `Server running...`
+
+---
+
+`backend.js`
+
+```javascript, [.highlight: 1]
+var express = require("express")
+
+var app = express()
+
+app.listen(3000, function () {
+  console.log("Server running...")
+})
+```
+
+Importing `express`, a lightweight server
+
+---
+
+`backend.js`
+
+```javascript, [.highlight: 3]
+var express = require("express")
+
+var app = express()
+
+app.listen(3000, function () {
+  console.log("Server running...")
+})
+```
+
+Creating our server
+
+---
+
+`backend.js`
+
+```javascript, [.highlight: 5]
+var express = require("express")
+
+var app = express()
+
+app.listen(3000, function () {
+  console.log("Server running...")
+})
+```
+
+Running our server - start listening to requests
+
+---
+
+Right now your server is just listening but doesn't respond to any requests.
+
+Let's get it respond to incoming requests
+
+You've set up a phone, but you're not answering any calls
+
+---
+
+`backend.js`
+
+```javascript, [.highlight: 5-7]
+var express = require("express")
+
+var app = express()
+
+app.get('/', function (req, res) {
+  res.send("Hello")
+})
+
+app.listen(3000, function () {
+  console.log("Server running...")
+})
+```
+
+Listen to `/`
+i.e. my phone number is 98765432
+
+When `/` is requested, send `Hello` as the response
+i.e. when someone calls me at 98765432, say Hello
+
+---
+
+`backend.js`
+
+```javascript, [.highlight: 2, 7-10]
+var express = require("express")
+var getNearestCarparkTo = require("./carpark-helpers.js")
+
+var app = express()
+
+app.get('/', function (req, res) {
+  getNearestCarparkTo(req.query.x, req.query.y).then(function (carpark) {
+    res.set("Access-Control-Allow-Origin", "*")
+    res.send(carpark)
+  })
+})
+```
+
+Send the `x` and `y` values to the helper API
+
+Send the carpark replied by the helper API back as a response
+
+
+---
+
+`backend.js`
+
+```javascript
+var express = require("express")
+var getNearestCarparkTo = require("./carpark-helpers.js")
+
+var app = express()
+
+app.get('/', function (req, res) {
+  getNearestCarparkTo(req.query.x, req.query.y).then(function (carpark) {
+    res.set("Access-Control-Allow-Origin", "*")
+    res.send(carpark)
+  })
+})
+
+app.listen(3000, function () {
+  console.log("Server running...")
+})
+```
+
+
+
+---
+
+`index.html`
+
+```html, [.highlight: 15]
+<head>
+  <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+  <link rel="stylesheet" type="text/css" href="carpark-style.css"></link>
+</head>
+
+<body>
+  <h1>Nearest Carpark Availability</h1>
+  <input id="locationInput" placeholder="Enter a location">
+
+  <div id="carparkAddress"></div>
+  <div id="carparkTotalLots"></div>
+  <div id="carparkAvailableLots"></div>
+</body>
+
+<script src="carpark-helpers.js"></script>
+<script src="carpark-logic.js"></script>
+```
+
+Delete the highlighted line
+
+---
+
+`index.html`
+
+```html
+<head>
+  <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+  <link rel="stylesheet" type="text/css" href="carpark-style.css"></link>
+</head>
+
+<body>
+  <h1>Nearest Carpark Availability</h1>
+  <input id="locationInput" placeholder="Enter a location">
+
+  <div id="carparkAddress"></div>
+  <div id="carparkTotalLots"></div>
+  <div id="carparkAvailableLots"></div>
+</body>
+
+<script src="carpark-logic.js"></script>
+```
+
+Refresh the page - the search should no longer be working
+
+---
+
+`carpark-logic.js`
+
+```javascript, [.highlight: 3-4]
+function searchXY(response) {
+  var searchResult = response.data.results[0]
+  getNearestCarparkTo(searchResult.X, searchResult.Y)
+    .then(addCarparkToPage)
+}
+```
+
+Delete the highlighted lines
+
+---
+
+`carpark-logic.js`
+
+```javascript, [.highlight: 4-12]
+function searchXY(response) {
+  var searchResult = response.data.results[0]
+  
+  var url = "http://localhost:3000"
+  axios.get(url, {
+    params: {
+      x: searchResult.X,
+      y: searchResult.Y
+    }
+  }).then(response => {
+    addCarparkToPage(response.data)
+  })
+}
+```
+
+Set up `carpark-logic` to use our backend API
 
 ---
 
