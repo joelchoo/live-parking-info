@@ -67,7 +67,7 @@ function addDistanceToCarparks(carparks, x, y) {
 
   var carparksWithDistance = []
 
-  // Calculate distance from every carpark to the postcode
+  // Calculate distance from every carpark to the location
   for (var carpark of carparks) {
     if (carpark.lots_available !== undefined) {
       var distance = distanceFromXY(carpark, x, y)
