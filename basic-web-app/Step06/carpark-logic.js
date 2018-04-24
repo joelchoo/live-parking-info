@@ -1,12 +1,13 @@
-function addCarparkToPage([address, totalLots, availableLots]) {
+function addCarparkToPage(address, totalLots, availableLots) {
   document.getElementById("carparkAddress").innerText = "Address: " + address
   document.getElementById("carparkTotalLots").innerText = "Total Lots: " + totalLots
   document.getElementById("carparkAvailableLots").innerText = "Available Lots: " + availableLots
 }
 
-function searchXY(response) {
-  var searchResult = response.data.results[0]
-  getNearestCarparkTo(searchResult.X, searchResult.Y).then(addCarparkToPage)
+function searchXY(coordinates) {
+  getNearestCarparkTo(coordinates.X, coordinates.Y).then(carpark => {
+    addCarparkToPage(carpark.address, carpark.total_lots, carpark.lots_available)
+  })
 }
 
 function searchLocation(location) {
@@ -16,7 +17,9 @@ function searchLocation(location) {
       returnGeom: "Y",
       getAddrDetails: "N"
     }
-  }).then(searchXY)
+  }).then(response => {
+    searchXY(response.data.results[0])
+  })
 }
 
 var locationInput = document.getElementById("locationInput")

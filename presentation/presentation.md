@@ -396,7 +396,7 @@ Refresh the page - total and available lots should reappear
 `carpark-logic.js`
 
 ```javascript
-function addCarparkToPage([address, totalLots, availableLots]) {
+function addCarparkToPage(address, totalLots, availableLots) {
   document.getElementById("carparkAddress").innerText =
     "Address: " + address
   document.getElementById("carparkTotalLots").innerText =
@@ -417,7 +417,7 @@ Functions are like recipes - they're a way to group some instructions together
 `carpark-logic.js`
 
 ```javascript, [.highlight: 1]
-function addCarparkToPage([address, totalLots, availableLots]) {
+function addCarparkToPage(address, totalLots, availableLots) {
   document.getElementById("carparkAddress").innerText =
     "Address: " + address
   document.getElementById("carparkTotalLots").innerText =
@@ -436,7 +436,7 @@ function addCarparkToPage([address, totalLots, availableLots]) {
 `carpark-logic.js`
 
 ```javascript
-function addCarparkToPage([address, totalLots, availableLots]) {
+function addCarparkToPage(address, totalLots, availableLots) {
   document.getElementById("carparkAddress").innerText =
     "Address: " + address
   document.getElementById("carparkTotalLots").innerText =
@@ -445,7 +445,7 @@ function addCarparkToPage([address, totalLots, availableLots]) {
     "Available Lots: " + availableLots
 }
 
-addCarparkToPage(["Blk 123", "456", "78"]) // run the function
+addCarparkToPage("Blk 123", "456", "78") // run the function
 ```
 
 Defining VS running the function
@@ -492,13 +492,13 @@ Give the input element an ID
 `carpark-logic.js`
 
 ```javascript, [.highlight: 9]
-function addCarparkToPage([address, totalLots, availableLots]) {
+function addCarparkToPage(address, totalLots, availableLots) {
   .
   .
   .
 }
 
-addCarparkToPage(["Blk 123", "456", "78"])
+addCarparkToPage("Blk 123", "456", "78")
 
 document.getElementById("locationInput")
 ```
@@ -510,13 +510,13 @@ Retrieve the input element using its ID
 `carpark-logic.js`
 
 ```javascript, [.highlight: 9]
-function addCarparkToPage([address, totalLots, availableLots]) {
+function addCarparkToPage(address, totalLots, availableLots) {
   .
   .
   .
 }
 
-addCarparkToPage(["Blk 123", "456", "78"])
+addCarparkToPage("Blk 123", "456", "78")
 
 var locationInput = document.getElementById("locationInput")
 ```
@@ -525,7 +525,7 @@ var locationInput = document.getElementById("locationInput")
 
 Saving the element into the `locationInput` variable
 
-Like saving your word document into `Document.docx`
+Like saving your word document into Document.docx
 
 ---
 
@@ -549,7 +549,7 @@ locationInput.addEventListener("keydown", handleKeydown)
 var locationInput = document.getElementById("locationInput")
 
 function handleKeydown(event) {
-  addCarparkToPage(["Blk 123", "456", "78"])
+  addCarparkToPage("Blk 123", "456", "78")
 }
 
 locationInput.addEventListener("keydown", handleKeydown)
@@ -568,7 +568,7 @@ Type into the input box - the text should reappear
 ```javascript, [.highlight: 2-4]
 function handleKeydown(event) {
   if (event.key === "Enter") {
-    addCarparkToPage(["Blk 123", "456", "78"])
+    addCarparkToPage("Blk 123", "456", "78")
   }
 }
 ```
@@ -592,7 +592,7 @@ Find the input element, and extract it's content.
 ```javascript, [.highlight: 3]
 function handleKeydown(event) {
   if (event.key === "Enter") {
-    addCarparkToPage([locationInput.value, "456", "78"])
+    addCarparkToPage(locationInput.value, "456", "78")
   }
 }
 ```
@@ -613,39 +613,13 @@ function handleKeydown(event) {
 
 Now we need to use the location to find the nearest carpark.
 
-We'll do that in two steps:
-
-1) location -> X and Y (like latitude and longitude)
+1) location -> X and Y 
 
 2) X and Y -> Carpark
 
 ---
 
-`carpark-logic.js`
-
-```javascript, [.highlight: 1-3, 7]
-function searchLocation(location) {
-  addCarparkToPage([location, "456", "78"])
-}
-
-function handleKeydown(event) {
-  if (event.key === "Enter") {
-    searchLocation(locationInput.value)
-  }
-}
-```
-
-Create the `searchLocation` function
-
-TODO: make transition less awkward
-
----
-
-We need to take the location and find the nearest carpark to it.
-
-First, we will convert the location to X and Y values.
-
-To do that, we need to make an API call.
+To get X and Y, we need to make an API call.
 
 ---
 
@@ -653,9 +627,9 @@ To do that, we need to make an API call.
 
 * Way for apps to communicate (over the internet)
 * An API call is like a phone call to a wise person who has the answers to your questions
-  * "What time is it now?"
-  * "Where are all the carparks in Singapore?"
-  * "What is the current price of Bitcoin?"
+  * **"What time is it now?"**
+  * **"Where are all the carparks in Singapore?"**
+  * **"What is the current price of Bitcoin?"**
 
 ---
 
@@ -663,7 +637,7 @@ To do that, we need to make an API call.
 
 * Don't reinvent the wheel
 * Keeps our app simple!
-* Some information can only be provided by some people/organisations (e.g. price of Bitcoin)
+* Some information can only be provided by certain people/organisations (e.g. price of Bitcoin)
 
 ---
 
@@ -689,16 +663,38 @@ To do that, we need to make an API call.
 <script src="carpark-logic.js"></script>
 ```
 
-* `head` loads before the `body`
-* `axios` is an external library to help make API calls
+* We need the help of a library (`axios`) to make this call
+* `head` loads our library before the `body`
+
+^ How would one know which library to use?
 
 ---
 
 `carpark-logic.js`
 
-```javascript
-function searchXY(response) {
-  addCarparkToPage(["Blk 123", "456", "78"])
+```javascript, [.highlight: 1-3, 7]
+function searchLocation(location) {
+  addCarparkToPage(location, "456", "78")
+}
+
+function handleKeydown(event) {
+  if (event.key === "Enter") {
+    searchLocation(locationInput.value)
+  }
+}
+```
+
+Create the `searchLocation` function
+
+^ Test that location is visible on front end
+
+---
+
+`carpark-logic.js`
+
+```javascript, [.highlight: 1-3, 6-14]
+function searchXY(coordinates) {
+  addCarparkToPage("Blk 123", "456", "78")
 }
 
 function searchLocation(location) {
@@ -708,35 +704,49 @@ function searchLocation(location) {
       returnGeom: "Y",
       getAddrDetails: "N"
     }
-  }).then(searchXY)
+  }).then(response => {
+    searchXY(response)
+  })
+}
+
+```
+Make the API call using `axios`
+
+^ Show response object from API in browser
+
+---
+
+`carpark-logic.js`
+
+```javascript, [.highlight: 9]
+function searchLocation(location) {
+  axios.get("https://developers.onemap.sg/commonapi/search", {
+    params: {
+      searchVal: location,
+      returnGeom: "Y",
+      getAddrDetails: "N"
+    }
+  }).then(response => {
+    searchXY(response.data.results[0])
+  })
 }
 ```
+
+Extract the coordinates from the `response`
+
+^ Show response object from API in browser
 
 ---
 
 `carpark-logic.js`
 
 ```javascript, [.highlight: 2]
-function searchXY(response) {
-  var searchResult = response.data.results[0]
-  addCarparkToPage(["Blk 123", "456", "78"])
+function searchXY(coordinates) {
+  addCarparkToPage(coordinates.X, coordinates.Y, "78")
 }
 ```
 
-Extract the search result from the `response`
-
----
-
-`carpark-logic.js`
-
-```javascript, [.highlight: 3]
-function searchXY(response) {
-  var searchResult = response.data.results[0]
-  addCarparkToPage(["Blk 123", searchResult.X, searchResult.Y])
-}
-```
-
-Display the search result for us to check that it is correct
+Display the X and Y coordinates for us to check that it is correct
 
 ---
 
@@ -768,13 +778,12 @@ Import my helper API
 
 `carpark-logic.js`
 
-```javascript, [.highlight: 3-4]
-function searchXY(response) {
-  var searchResult = response.data.results[0]
-  getNearestCarparkTo(searchResult.X, searchResult.Y)
-    .then(addCarparkToPage)
+```javascript, [.highlight: 2-4]
+function searchXY(coordinates) {
+  getNearestCarparkTo(coordinates.X, coordinates.Y).then(carpark => {
+    addCarparkToPage(carpark.address, carpark.total_lots, carpark.lots_available)
+  })
 }
-
 ```
 
 Use my helper API
@@ -1093,11 +1102,11 @@ Refresh the page - the search should no longer be working
 
 `carpark-logic.js`
 
-```javascript, [.highlight: 3-4]
-function searchXY(response) {
-  var searchResult = response.data.results[0]
-  getNearestCarparkTo(searchResult.X, searchResult.Y)
-    .then(addCarparkToPage)
+```javascript, [.highlight: 2-4]
+function searchXY(coordinates) {
+  getNearestCarparkTo(coordinates.X, coordinates.Y).then(carpark => {
+    addCarparkToPage(carpark.address, carpark.total_lots, carpark.lots_available)
+  })
 }
 ```
 
@@ -1107,18 +1116,17 @@ Delete the highlighted lines
 
 `carpark-logic.js`
 
-```javascript, [.highlight: 4-12]
-function searchXY(response) {
-  var searchResult = response.data.results[0]
-  
+```javascript, [.highlight: 2-11]
+function searchXY(coordinates) {
   var url = "http://localhost:3000"
   axios.get(url, {
     params: {
-      x: searchResult.X,
-      y: searchResult.Y
+      x: coordinates.X,
+      y: coordinates.Y
     }
-  }).then(response => {
-    addCarparkToPage(response.data)
+  }).then(carpark => {
+    var carpark = response.data
+    addCarparkToPage(carpark.address, carpark.total_lots, carpark.lots_available)
   })
 }
 ```
