@@ -5,10 +5,12 @@ function addCarparkToPage(address, totalLots, availableLots) {
 }
 
 function searchXY(coordinates) {
-  addCarparkToPage(coordinates.X, coordinates.Y, "78")
+  // X and Y -> Carpark
+  addCarparkToPage("nearest carpark to XY", "456", "78")
 }
 
 function searchLocation(location) {
+  // location -> X and Y
   axios.get("https://developers.onemap.sg/commonapi/search", {
     params: {
       searchVal: location,
@@ -16,7 +18,10 @@ function searchLocation(location) {
       getAddrDetails: "N"
     }
   }).then(response => {
-    searchXY(response.data.results[0])
+    console.log(response)
+    var coordinates = response.data.results[0]
+    console.log(coordinates)
+    searchXY(coordinates)
   })
 }
 

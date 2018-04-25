@@ -589,10 +589,11 @@ Find the input element, and extract it's content.
 
 `carpark-logic.js`
 
-```javascript, [.highlight: 3]
+```javascript, [.highlight: 3-4]
 function handleKeydown(event) {
   if (event.key === "Enter") {
-    addCarparkToPage(locationInput.value, "456", "78")
+    var location = locationInput.value
+    addCarparkToPage(location, "456", "78")
   }
 }
 ```
@@ -616,8 +617,6 @@ Now we need to use the location to find the nearest carpark.
 1) location -> X and Y 
 
 2) X and Y -> Carpark
-
----
 
 To get X and Y, we need to make an API call.
 
@@ -672,32 +671,44 @@ To get X and Y, we need to make an API call.
 
 `carpark-logic.js`
 
-```javascript, [.highlight: 1-3, 7]
+```javascript, [.highlight: 1-13, 18]
+
+function searchXY(coordinates) {
+  // X and Y -> Carpark
+  addCarparkToPage("nearest carpark to XY", "456", "78")
+}
+
 function searchLocation(location) {
-  addCarparkToPage(location, "456", "78")
+  // location -> X and Y
+  var coordinates = { 
+    X: 123,
+    Y: 456
+  }
+  searchXY(coordinates)
 }
 
 function handleKeydown(event) {
   if (event.key === "Enter") {
-    searchLocation(locationInput.value)
+    var location = locationInput.value
+    searchLocation(location)
   }
 }
+
 ```
 
-Create the `searchLocation` function
+Create the `searchLocation` and `searchXY` function
+Plan our logic
 
-^ Test that location is visible on front end
+^ Test that carpark is visible on front end
 
 ---
 
 `carpark-logic.js`
 
-```javascript, [.highlight: 1-3, 6-14]
-function searchXY(coordinates) {
-  addCarparkToPage("Blk 123", "456", "78")
-}
+```javascript, [.highlight: 3-9, 15]
 
 function searchLocation(location) {
+  // location -> X and Y
   axios.get("https://developers.onemap.sg/commonapi/search", {
     params: {
       searchVal: location,
@@ -705,12 +716,43 @@ function searchLocation(location) {
       getAddrDetails: "N"
     }
   }).then(response => {
-    searchXY(response)
+    var coordinates = { 
+      X: 123,
+      Y: 456
+    }
+    searchXY(coordinates)
   })
 }
 
 ```
-Make the API call using `axios`
+Make the API call
+
+---
+
+`carpark-logic.js`
+
+```javascript, [.highlight: 10]
+
+function searchLocation(location) {
+  // location -> X and Y
+  axios.get("https://developers.onemap.sg/commonapi/search", {
+    params: {
+      searchVal: location,
+      returnGeom: "Y",
+      getAddrDetails: "N"
+    }
+  }).then(response => {
+    console.log(response)
+    var coordinates = { 
+      X: 123,
+      Y: 456
+    }
+    searchXY(coordinates)
+  })
+}
+
+```
+`console.log` the API response
 
 ^ Show response object from API in browser
 
@@ -718,8 +760,9 @@ Make the API call using `axios`
 
 `carpark-logic.js`
 
-```javascript, [.highlight: 9]
+```javascript, [.highlight: 11]
 function searchLocation(location) {
+  // location -> X and Y
   axios.get("https://developers.onemap.sg/commonapi/search", {
     params: {
       searchVal: location,
@@ -727,26 +770,37 @@ function searchLocation(location) {
       getAddrDetails: "N"
     }
   }).then(response => {
-    searchXY(response.data.results[0])
+    console.log(response)
+    var coordinates = response.data.results[0]
+    searchXY(coordinates)
   })
 }
 ```
 
 Extract the coordinates from the `response`
 
-^ Show response object from API in browser
-
 ---
 
 `carpark-logic.js`
 
-```javascript, [.highlight: 2]
-function searchXY(coordinates) {
-  addCarparkToPage(coordinates.X, coordinates.Y, "78")
+```javascript, [.highlight: 11]
+function searchLocation(location) {
+  // location -> X and Y
+  axios.get("https://developers.onemap.sg/commonapi/search", {
+    params: {
+      searchVal: location,
+      returnGeom: "Y",
+      getAddrDetails: "N"
+    }
+  }).then(response => {
+    var coordinates = response.data.results[0]
+    console.log(coordinates)
+    searchXY(coordinates)
+  })
 }
 ```
 
-Display the X and Y coordinates for us to check that it is correct
+`console.log` the X and Y coordinates for us to check that it is correct
 
 ---
 
@@ -778,8 +832,9 @@ Import my helper API
 
 `carpark-logic.js`
 
-```javascript, [.highlight: 2-4]
+```javascript, [.highlight: 3-5]
 function searchXY(coordinates) {
+  // X and Y -> Carpark
   getNearestCarparkTo(coordinates.X, coordinates.Y).then(carpark => {
     addCarparkToPage(carpark.address, carpark.total_lots, carpark.lots_available)
   })
