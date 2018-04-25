@@ -1,25 +1,35 @@
 @import url('https://fonts.googleapis.com/css?family=Mandali');
 
 body {
+  background-image: url("background-image.png");
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+
   font-family: "Mandali";
   text-align: center;
-  background-image: url("background-image.png");
-  background-repeat: no-repeat;
   color: #F2F2F2;
+  margin-top: 10%;
+}
+
+h1 {
+  font-size: 64px;
 }
 
 input {
-  width: 70%;
-  border-radius: 4px;
   font-size: 20px;
+
+  width: 70%;
   padding: 12px 20px;
   margin-bottom: 30px;
+  border-radius: 4px;
 }
 
 @media only screen  
   and (max-device-width: 480px) {
-  body {
-    background-image: unset;
-    color: #000;
+
+  input {
+    font-size: 32px;
+    width: 95%;
   }
 }

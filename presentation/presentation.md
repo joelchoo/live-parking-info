@@ -855,33 +855,178 @@ Use my helper API
 
 `carpark-style.css`
 
-```css
+```css, [.highlight: 3, 5, 7, 9, 11, 13]
 @import url('https://fonts.googleapis.com/css?family=Mandali');
 
 body {
-  font-family: "Mandali";
-  text-align: center;
-  background-image: url("background-image.png");
-  background-repeat: no-repeat;
-  color: #F2F2F2;
+  /* ... */
+}
+
+h1 {
+  /* ... */
 }
 
 input {
-  width: 70%;
-  border-radius: 4px;
+  /* ... */
+}
+```
+
+`body`, `h1`, `input` are CSS Selectors
+
+---
+
+`index.html`
+
+```html, [.highlight: 6, 7, 8]
+<head>
+  <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+  <link rel="stylesheet" type="text/css" href="carpark-style.css"></link>
+</head>
+
+<body>
+  <h1>Nearest Carpark Availability</h1>
+  <input id="locationInput" placeholder="Enter a location">
+
+  <div id="carparkAddress"></div>
+  <div id="carparkTotalLots"></div>
+  <div id="carparkAvailableLots"></div>
+</body>
+
+<script src="carpark-helpers.js"></script>
+<script src="carpark-logic.js"></script>
+```
+
+---
+
+`carpark-style.css`
+
+```css, [.highlight: 1]
+@import url('https://fonts.googleapis.com/css?family=Mandali');
+
+...
+
+```
+
+Import a font package from fonts.google.com
+
+---
+
+`carpark-style.css`
+
+```css, [.highlight: 3-7, 13]
+@import url('https://fonts.googleapis.com/css?family=Mandali');
+
+body {
+  background-image: url("background-image.png");
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+
+  font-family: "Mandali";
+  text-align: center;
+  color: #F2F2F2;
+  margin-top: 10%;
+}
+
+...
+
+```
+
+Style the `body` - add background image
+
+---
+
+`carpark-style.css`
+
+```css, [.highlight: 9-12]
+@import url('https://fonts.googleapis.com/css?family=Mandali');
+
+body {
+  background-image: url("background-image.png");
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+
+  font-family: "Mandali";
+  text-align: center;
+  color: #F2F2F2;
+  margin-top: 10%;
+}
+
+...
+
+```
+
+Style the `body` - font and margin
+
+---
+
+`carpark-style.css`
+
+```css, [.highlight: 7-9]
+@import url('https://fonts.googleapis.com/css?family=Mandali');
+
+body {
+  /* ... */
+}
+
+h1 {
+  font-size: 64px;
+}
+
+```
+
+Style the `h1`
+
+---
+
+
+`carpark-style.css`
+
+```css, [.highlight: 5-12]
+h1 {
+  /* ... */
+}
+
+input {
   font-size: 20px;
+
+  width: 70%;
   padding: 12px 20px;
   margin-bottom: 30px;
+  border-radius: 4px;
+}
+```
+
+Style the `input` (search box)
+
+---
+
+`carpark-style.css`
+
+```css, [.highlight: 5-12]
+input {
+  /* ... */
 }
 
 @media only screen  
   and (max-device-width: 480px) {
-  body {
-    background-image: unset;
-    color: #000;
+
+  input {
+    font-size: 32px;
+    width: 95%;
   }
 }
 ```
+
+`@media` query: checking for screen size and then defining a specific style for the element
+
+---
+
+# Recap
+
+* Use CSS Selectors to style the `body`, `h1`, and `input`
+* Use `@media` queries to set style for mobile devices
 
 ---
 
