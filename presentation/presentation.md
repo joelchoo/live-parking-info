@@ -1,16 +1,9 @@
 slidenumbers: true
 
-# Coding for Policymakers
+# Hands On Coding Workshop
 
 ---
-<!-- 
-# Why digital matters
 
-> What government can and should look like in a digital age is a real and pressing question. This is why **digital transformation** is such a buzz word. 
---David Eaves, Harvard Kennedy School
-
----
- -->
 # Objectives
 
 * Understand iterative product development
@@ -18,12 +11,6 @@ slidenumbers: true
   * Frontend (HTML, Javascript, CSS)
   * APIs
   * Backend/server
-
-<!-- 
-* Improve intuition + understanding of digital tech
-* Enable policymakers to have deeper and more technical conversations with each other
-* NOT to become a software engineer
-* NOT to learn to code -->
 
 ---
 
@@ -84,8 +71,6 @@ Open the `index.html` file using Google Chrome.
 hello
 ```
 
-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-
-
 * Save the file and refresh the page in Chrome
 * Websites are just text files interpreted by the browser
 * HTML files specify the content that the browser should display
@@ -97,8 +82,6 @@ hello
   hello
 </body>
 ```
-
-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-
 
 * HTML uses tags to differentiate between different parts of the page
 * `<body>` - opening tag for the page's content
@@ -126,8 +109,6 @@ hello
 </body>
 ```
 
-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-
-
 * HTML has a specific way of formatting content
 * What you see is not necessarily what you get
 
@@ -142,8 +123,6 @@ hello
   there!
 </body>
 ```
-
-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-
 
 * The `h1` tag makes the content inside become a **header**
 
@@ -166,8 +145,6 @@ hello
 </body>
 ```
 
-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-
-
 * `input` creates an input box
 * `input` is a basic element, does not require a closing tag
 
@@ -179,8 +156,6 @@ hello
   <input placeholder="Enter a location">
 </body>
 ```
-
-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-
 
 * HTML elements/tags can have extra **attributes** given to them
 * These **attributes** can change the behaviour and appearance of the element
@@ -196,8 +171,6 @@ hello
 </body>
 ```
 
-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-
-
 `div`s are containers for content
 
 ---
@@ -212,8 +185,6 @@ hello
   <div>Available Lots: 78</div>
 </body>
 ```
-
-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-
 
 `div`s can be used to organise and arrange content
 
@@ -907,11 +878,9 @@ app.listen(3000, function () {
 })
 ```
 
-Open the command line (TAs can help!)
-
-Type `node backend.js` and hit enter
-
-You should see `Server running...`
+* Open the command line (TAs can help!)
+* Type `node backend.js` and hit enter
+* You should see `Server running...`
 
 ---
 
@@ -927,7 +896,7 @@ app.listen(3000, function () {
 })
 ```
 
-Importing `express`, a lightweight server
+* Importing `express`, a lightweight server
 
 ---
 
@@ -943,7 +912,7 @@ app.listen(3000, function () {
 })
 ```
 
-Creating our server
+* Creating our server
 
 ---
 
@@ -959,15 +928,15 @@ app.listen(3000, function () {
 })
 ```
 
-Running our server - start listening to requests
+* Running our server - start listening to requests
 
 ---
 
-Right now your server is just listening but doesn't respond to any requests.
+Right now your server is listening, but doesn't respond to any requests.
 
-Let's get it respond to incoming requests
+You've set up a phone, but you're not answering any calls.
 
-You've set up a phone, but you're not answering any calls
+**Next step: make your server respond to incoming requests.**
 
 ---
 
@@ -978,7 +947,7 @@ var express = require("express")
 
 var app = express()
 
-app.get('/', function (req, res) {
+app.get("/", function (req, res) {
   res.send("Hello")
 })
 
@@ -987,11 +956,11 @@ app.listen(3000, function () {
 })
 ```
 
-Listen to `/`
-i.e. my phone number is 98765432
+* Listen to "`/`"
+* When "`/`" is requested, send `Hello` as the response
 
-When `/` is requested, send `Hello` as the response
-i.e. when someone calls me at 98765432, say Hello
+^ i.e. my phone number is 98765432
+^ i.e. when someone calls me at 98765432, say Hello
 
 ---
 
@@ -1003,18 +972,17 @@ var getNearestCarparkTo = require("./carpark-helpers.js")
 
 var app = express()
 
-app.get('/', function (req, res) {
-  getNearestCarparkTo(req.query.x, req.query.y).then(function (carpark) {
+app.get("/", function (req, res) {
+  getNearestCarparkTo(req.query.x, req.query.y).then(carpark => {
     res.set("Access-Control-Allow-Origin", "*")
     res.send(carpark)
   })
 })
 ```
 
-Send the `x` and `y` values to the helper API
-
-Send the carpark replied by the helper API back as a response
-
+* Send the `x` and `y` values to the helper API
+* Helper API responds with the nearest carpark
+* Take the carpark and send it back to the requester
 
 ---
 
@@ -1026,8 +994,8 @@ var getNearestCarparkTo = require("./carpark-helpers.js")
 
 var app = express()
 
-app.get('/', function (req, res) {
-  getNearestCarparkTo(req.query.x, req.query.y).then(function (carpark) {
+app.get("/", function (req, res) {
+  getNearestCarparkTo(req.query.x, req.query.y).then(carpark => {
     res.set("Access-Control-Allow-Origin", "*")
     res.send(carpark)
   })
@@ -1037,8 +1005,6 @@ app.listen(3000, function () {
   console.log("Server running...")
 })
 ```
-
-
 
 ---
 

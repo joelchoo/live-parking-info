@@ -4,7 +4,7 @@ var getNearestCarparkTo = require("./carpark-helpers.js")
 var app = express()
 
 app.get("/", function (req, res) {
-  getNearestCarparkTo(req.query.x, req.query.y).then(function (carpark) {
+  getNearestCarparkTo(req.query.x, req.query.y).then(carpark => {
     res.set("Access-Control-Allow-Origin", "*")
     res.send(carpark)
   })
