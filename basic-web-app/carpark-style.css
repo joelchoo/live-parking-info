@@ -1,15 +1,15 @@
 @import url('https://fonts.googleapis.com/css?family=Mandali');
 
 body {
-  font-family: "Mandali";
-  text-align: center;
-  color: #F2F2F2;
-
-  margin-top: 10%;
   background-image: url("background-image.png");
   background-position: center;
   background-repeat: no-repeat;
   background-size: cover;
+
+  font-family: "Mandali";
+  text-align: center;
+  color: #F2F2F2;
+  margin-top: 10%;
 }
 
 h1 {
