@@ -6,8 +6,8 @@ slidenumbers: true
 
 # Objectives
 
-* Understand iterative product development
-* Learn about web applications
+* Learn more about iterative product development
+* Learn about building blocks of web applications
   * Frontend (HTML, Javascript, CSS)
   * APIs
   * Backend/server
@@ -16,12 +16,12 @@ slidenumbers: true
 
 # Overview
 
-* Sharing on parking.sg
+* Sharing on Parking.sg
 * Hands on coding workshop
 
 ---
 
-# Sharing on parking.sg
+# Sharing on Parking.sg
 
 ---
 
@@ -35,14 +35,14 @@ slidenumbers: true
 
 ---
 
-# Hands on workshop
+# Outline
 
-1. What is a website?
-1. Displaying text
-1. Adding interaction
-1. Communicating with other apps
-1. Adding styles!
-1. A simple server
+1. Introduction to HTML - building the skeleton of our site (Joel)
+1. Introduction to Javascript - adding interactivity to our site (Nikhil)
+1. Introduction to APIs - fetching and displaying data on the site (Arshad)
+1. Introduction to CSS - styling the site (Preston)
+1. Deploying the site to the internet (Joel)
+1. Bonus - A simple API server
 
 ---
 
@@ -55,15 +55,18 @@ slidenumbers: true
 
 # Step 1 - Displaying some text
 
-![inline 150%](01.png)
+![inline](01.png)
 
 ---
 
 # Setup
 
-Open the folder using Atom.
+* Open the `index.html` file in **Atom**
+  * We will be editing our code in Atom
+* Open the `index.html` file in **Google Chrome**
+  * We will be able to see our progress in Chrome by refreshing the page
 
-Open the `index.html` file using Google Chrome.
+
 
 ---
 
@@ -180,13 +183,19 @@ hello
   <h1>Nearest Carpark Availability</h1>
   <input placeholder="Enter a location">
 
-  <div>Address: Blk 123 Imaginary Road</div>
+  <div>Address: Blk 123</div>
   <div>Total Lots: 456</div>
   <div>Available Lots: 78</div>
 </body>
 ```
 
 `div`s can be used to organise and arrange content
+
+---
+
+# Result
+
+![inline](01.png)
 
 ---
 
@@ -235,15 +244,13 @@ Adding styles to your page!
   <h1>Nearest Carpark Availability</h1>
   <input placeholder="Enter a location">
 
-  <div>Address: Blk 123 Imaginary Road</div>
+  <div>Address: Blk 123</div>
   <div>Total Lots: 456</div>
   <div>Available Lots: 78</div>
 </body>
 
 <script> alert("Hello!") </script>
 ```
-
-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-
 
 `script` content is javascript code that the browser will execute
 
@@ -254,15 +261,13 @@ Adding styles to your page!
   <h1>Nearest Carpark Availability</h1>
   <input placeholder="Enter a location">
 
-  <div>Address: Blk 123 Imaginary Road</div>
+  <div>Address: Blk 123</div>
   <div>Total Lots: 456</div>
   <div>Available Lots: 78</div>
 </body>
 
 <script src="carpark-logic.js"></script>
 ```
-
-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-
 
 To make it simpler, we can put the javascript code into another file
 
@@ -274,8 +279,6 @@ To make it simpler, we can put the javascript code into another file
 alert("Hello!")
 ```
 
-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-
-
 Note: For subsequent slides, the slide title is the file you should be editing
 
 
@@ -283,16 +286,12 @@ Note: For subsequent slides, the slide title is the file you should be editing
 
 # What's next
 
-We want to use javascript to insert text into our HTML document. We can do that by:
-
-1. Finding the right location in our HTML where we want to inject text
-1. Inject the text into that location!
-
----
-
-# What's next
-
-To find the right location to inject the text, we need to give the location a name (or ID)!
+* We need to be able to replace the address and parking lot information dynamically based on what the user searches
+* We can do that by using Javascript to:
+  1. Find the `div` for carpark address
+  1. Change the text inside the `div`
+  1. Repeat for parking lot information
+* To find the correct `div` for Step 1, we need to give the `div` an ID!
 
 ---
 
@@ -319,14 +318,13 @@ Refresh the page - the address should have disappeared
 
 ```javascript
 document.getElementById("carparkAddress").innerText =
-  "Address: Blk 123 Imaginary Road"
+  "Address: Blk 123"
 ```
 
-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-
-
-* `document.getElementById` allows the javascript to find the right element in the HTML
-* Setting `innerText` changes the content of the HTML element
+* `document.getElementById` gets the `carparkAddress` `div` in our HTML
+* Changing `innerText` changes the text inside the `carparkAddress` `div`
 * Refresh the page and the address should reappear
+* Repeat for the parking lot information
 
 ---
 
@@ -353,7 +351,7 @@ Refresh the page - total and available lots should have disappeared
 
 ```javascript
 document.getElementById("carparkAddress").innerText =
-  "Address: Blk 123 Imaginary Road"
+  "Address: Blk 123"
 document.getElementById("carparkTotalLots").innerText =
   "Total Lots: 456"
 document.getElementById("carparkAvailableLots").innerText =
@@ -364,6 +362,79 @@ Refresh the page - total and available lots should reappear
 
 ---
 
+# Introducing functions
+
+* Functions are like recipes - they're a way to group some instructions together
+
+```javascript
+function bakeCake() {
+  preheatOven()
+  mixIngredients()
+  putInOven()
+}
+```
+
+* `bakeCake` is the function name
+
+---
+
+# Introducing functions
+
+* Functions are like recipes - they're a way to group some instructions together
+
+```javascript
+function bakeCake(flour, eggs) {
+  preheatOven()
+  mixIngredients()
+  putInOven()
+}
+```
+
+* `bakeCake` is the function name
+* `flour` and `eggs` are the function inputs
+
+---
+
+`carpark-logic.js`
+
+```javascript
+function addCarparkToPage() {
+  document.getElementById("carparkAddress").innerText =
+    "Address: Blk 123"
+  document.getElementById("carparkTotalLots").innerText =
+    "Total Lots: 456"
+  document.getElementById("carparkAvailableLots").innerText =
+    "Available Lots: 78"
+}
+```
+
+* Put your existing code into a function (just add the first and last line)
+* Function name is `addCarparkToPage`
+* Refresh your page - the text should disappear
+
+---
+
+`carpark-logic.js`
+
+```javascript, [.highlight: 10]
+function addCarparkToPage() {
+  document.getElementById("carparkAddress").innerText =
+    "Address: Blk 123"
+  document.getElementById("carparkTotalLots").innerText =
+    "Total Lots: 456"
+  document.getElementById("carparkAvailableLots").innerText =
+    "Available Lots: 78"
+}
+
+addCarparkToPage()
+```
+
+* Creating a function does not run the code inside yet
+* We need to call the function to run the code inside
+* Analogy - writing a recipe is different from making a recipe
+
+---
+
 `carpark-logic.js`
 
 ```javascript
@@ -375,61 +446,18 @@ function addCarparkToPage(address, totalLots, availableLots) {
   document.getElementById("carparkAvailableLots").innerText =
     "Available Lots: " + availableLots
 }
+
+addCarparkToPage("Blk 123", "456", "78")
 ```
 
-**Introducing functions**
-
-Functions are like recipes - they're a way to group some instructions together
-
-
-
----
-
-`carpark-logic.js`
-
-```javascript, [.highlight: 1]
-function addCarparkToPage(address, totalLots, availableLots) {
-  document.getElementById("carparkAddress").innerText =
-    "Address: " + address
-  document.getElementById("carparkTotalLots").innerText =
-    "Total Lots: " + totalLots
-  document.getElementById("carparkAvailableLots").innerText =
-    "Available Lots: " + availableLots
-}
-```
-
-`addCarparkToPage` is the function name
-
-`address, totalLots, availableLots` are function **inputs**
-
----
-
-`carpark-logic.js`
-
-```javascript
-function addCarparkToPage(address, totalLots, availableLots) {
-  document.getElementById("carparkAddress").innerText =
-    "Address: " + address
-  document.getElementById("carparkTotalLots").innerText =
-    "Total Lots: " + totalLots
-  document.getElementById("carparkAvailableLots").innerText =
-    "Available Lots: " + availableLots
-}
-
-addCarparkToPage("Blk 123", "456", "78") // run the function
-```
-
-Defining VS running the function
-Writing VS cooking the recipe
-
-Refresh the page - the text should reappear
+* Add function inputs so that we can easily change the address and parking lot information displayed
 
 ---
 
 # Recap
 
 * Javascript adds interaction
-* Javascript links to HTML using `getElementById`
+* Javascript connects to HTML using `getElementById`
 * A function is a bunch of code that's grouped together
 * Calling a function runs the code in it
 
@@ -437,7 +465,9 @@ Refresh the page - the text should reappear
 
 # What's next?
 
-Handle the input that has been typed in
+## Reacting to user input
+
+^ Nikhil takes over here
 
 ---
 
@@ -1055,6 +1085,17 @@ input {
 
 ---
 
+# That's all folks!
+
+## Any questions?
+
+---
+
+# Bonus Material
+## Building your own simple API server
+
+---
+
 # Next Step - Building your own API
 
 * Build a simple backend to serve a simple API
@@ -1287,9 +1328,3 @@ function searchXY(coordinates) {
 ```
 
 Set up `carpark-logic` to use our backend API
-
----
-
-# That's all folks!
-
-## Any questions?
