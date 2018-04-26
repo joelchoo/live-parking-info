@@ -6,10 +6,10 @@ function addCarparkToPage(address, totalLots, availableLots) {
 
 var locationInput = document.getElementById("locationInput")
 
-function handleKeydown(event) {
+function grabLocation(event) {
   if (event.key === "Enter") {
     addCarparkToPage(locationInput.value, "123", "12")
   }
 }
 
-locationInput.addEventListener("keydown", handleKeydown)
+locationInput.addEventListener("keydown", grabLocation)

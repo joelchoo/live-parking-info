@@ -4,7 +4,7 @@ function addCarparkToPage(address, totalLots, availableLots) {
   document.getElementById("carparkAvailableLots").innerText = "Available Lots: " + availableLots
 }
 
-function searchXY(coordinates) {
+function getCarpark(coordinates) {
   var url = "http://localhost:3000"
   axios.get(url, {
     params: {
@@ -17,7 +17,7 @@ function searchXY(coordinates) {
   })
 }
 
-function searchLocation(location) {
+function getXY(location) {
   axios.get("https://developers.onemap.sg/commonapi/search", {
     params: {
       searchVal: location,
@@ -25,18 +25,18 @@ function searchLocation(location) {
       getAddrDetails: "N"
     }
   }).then(response => {
-    searchXY(response.data.results[0])
+    getCarpark(response.data.results[0])
   })
 }
 
 var locationInput = document.getElementById("locationInput")
 
-function handleKeydown(event) {
+function grabLocation(event) {
   if (event.key === "Enter") {
     var location = locationInput.value
-    searchLocation(location)
+    getXY(location)
   }
 }
 
-locationInput.addEventListener("keydown", handleKeydown)
+locationInput.addEventListener("keydown", grabLocation)
 

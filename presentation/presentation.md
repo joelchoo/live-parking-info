@@ -850,7 +850,7 @@ Add `carpark-library.js` to your code
 `carpark-logic.js`
 
 ```javascript, [.highlight: 2-4]
-function searchXY(coordinates) {
+function getCarpark(coordinates) {
   getNearestCarparkTo(coordinates.X, coordinates.Y).then(carpark => {
     addCarparkToPage(carpark.address, carpark.total_lots, carpark.lots_available)
   })
@@ -1300,7 +1300,7 @@ Refresh the page - the search should no longer be working
 `carpark-logic.js`
 
 ```javascript, [.highlight: 2-4]
-function searchXY(coordinates) {
+function getCarpark(coordinates) {
   getNearestCarparkTo(coordinates.X, coordinates.Y).then(carpark => {
     addCarparkToPage(carpark.address, carpark.total_lots, carpark.lots_available)
   })
@@ -1314,7 +1314,7 @@ Delete the highlighted lines
 `carpark-logic.js`
 
 ```javascript, [.highlight: 2-11]
-function searchXY(coordinates) {
+function getCarpark(coordinates) {
   var url = "http://localhost:3000"
   axios.get(url, {
     params: {
