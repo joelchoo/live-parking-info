@@ -9,8 +9,10 @@ slidenumbers: true
 * Learn more about iterative product development
 * Learn about building blocks of web applications
   * Frontend (HTML, Javascript, CSS)
-  * APIs
-  * Backend/server
+  * APIs and libraries
+
+
+  <!-- * Backend/server -->
 
 ---
 
@@ -452,6 +454,8 @@ addCarparkToPage("Blk 123", "456", "78")
 
 * Add function inputs so that we can easily change the address and parking lot information displayed
 
+^ show how to change in console?
+
 ---
 
 # Recap
@@ -522,11 +526,9 @@ addCarparkToPage("Blk 123", "456", "78")
 var locationInput = document.getElementById("locationInput")
 ```
 
-`var` is short for variable
-
-Saving the element into the `locationInput` variable
-
-Like saving your word document into Document.docx
+* `var` is short for variable
+* We're saving the element into the `locationInput` variable
+* Analogy - saving your word document into Document.docx
 
 ---
 
@@ -556,11 +558,10 @@ function grabLocation(event) {
 locationInput.addEventListener("keydown", grabLocation)
 ```
 
-Remember to remove `addCarparkToPage` from earlier
+Wrap the `addCarparkToPage` function call inside a new function `grabLocation`
 
-Refresh the page - the text should disappear
-
-Type into the input box - the text should reappear
+^ Refresh the page - the text should disappear
+^ Type into the input box - the text should reappear
 
 ---
 
@@ -689,7 +690,7 @@ function grabLocation(event) {
 
 ---
 
-![original 150%](logic-flowchart-bg.png)
+![original 60%](logic-flowchart-bg4.png)
 
 `carpark-logic.js`
 
@@ -838,11 +839,11 @@ function getXY(location) {
   ...
 </body>
 
-<script src="carpark-helpers.js"></script>
+<script src="carpark-library.js"></script>
 <script src="carpark-logic.js"></script>
 ```
 
-Add `carpark-helpers.js` to your code
+Add `carpark-library.js` to your code
 
 ---
 
@@ -891,7 +892,7 @@ Call the `getNearestCarparkTo(...)` function from Joel's library
   <div id="carparkAvailableLots"></div>
 </body>
 
-<script src="carpark-helpers.js"></script>
+<script src="carpark-library.js"></script>
 <script src="carpark-logic.js"></script>
 ```
 
@@ -914,7 +915,7 @@ Call the `getNearestCarparkTo(...)` function from Joel's library
   <div id="carparkAvailableLots"></div>
 </body>
 
-<script src="carpark-helpers.js"></script>
+<script src="carpark-library.js"></script>
 <script src="carpark-logic.js"></script>
 ```
 
@@ -1207,7 +1208,7 @@ app.listen(3000, function () {
 
 ```javascript, [.highlight: 2, 7-10]
 var express = require("express")
-var getNearestCarparkTo = require("./carpark-helpers.js")
+var getNearestCarparkTo = require("./carpark-library.js")
 
 var app = express()
 
@@ -1229,7 +1230,7 @@ app.get("/", function (req, res) {
 
 ```javascript
 var express = require("express")
-var getNearestCarparkTo = require("./carpark-helpers.js")
+var getNearestCarparkTo = require("./carpark-library.js")
 
 var app = express()
 
@@ -1264,7 +1265,7 @@ app.listen(3000, function () {
   <div id="carparkAvailableLots"></div>
 </body>
 
-<script src="carpark-helpers.js"></script>
+<script src="carpark-library.js"></script>
 <script src="carpark-logic.js"></script>
 ```
 
