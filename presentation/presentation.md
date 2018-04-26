@@ -853,28 +853,6 @@ Use my helper API
 
 ---
 
-`carpark-style.css`
-
-```css, [.highlight: 3, 5, 7, 9, 11, 13]
-@import url('https://fonts.googleapis.com/css?family=Mandali');
-
-body {
-  /* ... */
-}
-
-h1 {
-  /* ... */
-}
-
-input {
-  /* ... */
-}
-```
-
-`body`, `h1`, `input` are CSS Selectors
-
----
-
 `index.html`
 
 ```html, [.highlight: 6, 7, 8]
@@ -900,35 +878,16 @@ input {
 
 `carpark-style.css`
 
-```css, [.highlight: 1]
-@import url('https://fonts.googleapis.com/css?family=Mandali');
-
-...
-
-```
-
-Import a font package from fonts.google.com
-
----
-
-`carpark-style.css`
-
-```css, [.highlight: 3-7, 13]
-@import url('https://fonts.googleapis.com/css?family=Mandali');
-
+```css, [.highlight: 1-4, 9]
 body {
   background-image: url("background-image.png");
-  background-position: center;
-  background-repeat: no-repeat;
   background-size: cover;
+  background-position: center;
 
-  font-family: "Mandali";
   text-align: center;
   color: #F2F2F2;
   margin-top: 10%;
 }
-
-...
 
 ```
 
@@ -938,22 +897,16 @@ Style the `body` - add background image
 
 `carpark-style.css`
 
-```css, [.highlight: 9-12]
-@import url('https://fonts.googleapis.com/css?family=Mandali');
-
+```css, [.highlight: 6-8]
 body {
   background-image: url("background-image.png");
-  background-position: center;
-  background-repeat: no-repeat;
   background-size: cover;
+  background-position: center;
 
-  font-family: "Mandali";
   text-align: center;
   color: #F2F2F2;
   margin-top: 10%;
 }
-
-...
 
 ```
 
@@ -963,9 +916,7 @@ Style the `body` - font and margin
 
 `carpark-style.css`
 
-```css, [.highlight: 7-9]
-@import url('https://fonts.googleapis.com/css?family=Mandali');
-
+```css, [.highlight: 5-7]
 body {
   /* ... */
 }
@@ -999,6 +950,30 @@ input {
 ```
 
 Style the `input` (search box)
+
+---
+
+`carpark-style.css`
+
+```css, [.highlight: 1, 11]
+@import url('https://fonts.googleapis.com/css?family=Mandali');
+
+body {
+  background-image: url("background-image.png");
+  background-size: cover;
+  background-position: center;
+
+  text-align: center;
+  color: #F2F2F2;
+  margin-top: 10%;
+  font-family: "Mandali";
+}
+
+...
+
+```
+
+Import a font package from fonts.google.com
 
 ---
 
