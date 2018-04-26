@@ -505,12 +505,12 @@ Like saving your word document into Document.docx
 ```javascript, [.highlight: 3]
 var locationInput = document.getElementById("locationInput")
 
-locationInput.addEventListener("keydown", handleKeydown)
+locationInput.addEventListener("keydown", grabLocation)
 ```
 
 
 * React to user typing in the input box by adding an **event listener** (`addEventListener`)
-* `handleKeydown` is a function that will be called when the user types something (`keydown`)
+* `grabLocation` is a function that will be called when the user types something (`keydown`)
 
 ---
 
@@ -519,11 +519,11 @@ locationInput.addEventListener("keydown", handleKeydown)
 ```javascript, [.highlight: 1-7]
 var locationInput = document.getElementById("locationInput")
 
-function handleKeydown(event) {
+function grabLocation(event) {
   addCarparkToPage("Blk 123", "456", "78")
 }
 
-locationInput.addEventListener("keydown", handleKeydown)
+locationInput.addEventListener("keydown", grabLocation)
 ```
 
 Remember to remove `addCarparkToPage` from earlier
@@ -537,7 +537,7 @@ Type into the input box - the text should reappear
 `carpark-logic.js`
 
 ```javascript, [.highlight: 2-4]
-function handleKeydown(event) {
+function grabLocation(event) {
   if (event.key === "Enter") {
     addCarparkToPage("Blk 123", "456", "78")
   }
@@ -561,7 +561,7 @@ Find the input element, and extract it's content.
 `carpark-logic.js`
 
 ```javascript, [.highlight: 3-4]
-function handleKeydown(event) {
+function grabLocation(event) {
   if (event.key === "Enter") {
     var location = locationInput.value
     addCarparkToPage(location, "456", "78")
@@ -583,13 +583,7 @@ function handleKeydown(event) {
 
 # What's next?
 
-Now we need to use the location to find the nearest carpark.
-
-1) location -> X and Y 
-
-2) X and Y -> Carpark
-
-To get X and Y, we need to make an API call.
+![inline](logic-flowchart-steps.png)
 
 ---
 
@@ -603,11 +597,25 @@ To get X and Y, we need to make an API call.
 
 ---
 
-# Why use API calls?
+# How do we make an API call?
+
+* We need the help of a request library
+* A library is a set of functions that someone else has written
+* Like using tools that a wise man created
+
+---
+
+# Why do we use APIs/Libraries?
 
 * Don't reinvent the wheel
+  * Passport: For password authentication
+  * OpenCV: For image recognition
 * Keeps our app simple!
 * Some information can only be provided by certain people/organisations (e.g. price of Bitcoin)
+
+^standing on the shoulders of giants
+^show repos for different libraries
+^show demo of opencv
 
 ---
 
@@ -616,6 +624,11 @@ To get X and Y, we need to make an API call.
 "What are the X and Y coordinates of this location?"
 
 [https://docs.onemap.sg/#onemap-rest-apis](https://docs.onemap.sg/#onemap-rest-apis)
+
+^show api documentation
+^what are parameters?
+^what happens if you change parameters? i.e. returnGeom is set to "N"?
+^show api call from browser
 
 ---
 
@@ -633,53 +646,57 @@ To get X and Y, we need to make an API call.
 <script src="carpark-logic.js"></script>
 ```
 
-* We need the help of a library (`axios`) to make this call
-* `head` loads our library before the `body`
+* Use the script tag to add the `axios` library to your code
+* `head` loads our library before the rest of the page
 
-^ How would one know which library to use?
+^ google "javascript request library"
 
 ---
 
+# Let's sketch out our logic
+
+![inline](logic-flowchart-func.png)
+
+---
+
+![original 150%](logic-flowchart-bg.png)
+
 `carpark-logic.js`
 
-```javascript, [.highlight: 1-13, 18]
+```javascript, [.highlight: 4, 7-18]
 
-function searchXY(coordinates) {
-  // X and Y -> Carpark
-  addCarparkToPage("nearest carpark to XY", "456", "78")
-}
-
-function searchLocation(location) {
-  // location -> X and Y
-  var coordinates = { 
-    X: 123,
-    Y: 456
-  }
-  searchXY(coordinates)
-}
-
-function handleKeydown(event) {
+function grabLocation(event) {
   if (event.key === "Enter") {
     var location = locationInput.value
-    searchLocation(location)
+    getXY(location)
   }
+}
+
+function getXY(location) {
+  var coordinates = { 
+    X: "1111",
+    Y: "2222"
+  }
+  getCarpark(coordinates)
+}
+
+function getCarpark(coordinates) {
+  addCarparkToPage(coordinates.X, coordinates.Y, "78")
 }
 
 ```
 
-Create the `searchLocation` and `searchXY` function
-Plan our logic
-
-^ Test that carpark is visible on front end
+^Create the `getXY` and `getCarpark` function
+Link the functions
+Test that coordinates are visible on front end
 
 ---
 
 `carpark-logic.js`
 
-```javascript, [.highlight: 3-9, 15]
+```javascript, [.highlight: 2-8, 14]
 
-function searchLocation(location) {
-  // location -> X and Y
+function getXY(location) {
   axios.get("https://developers.onemap.sg/commonapi/search", {
     params: {
       searchVal: location,
@@ -688,10 +705,10 @@ function searchLocation(location) {
     }
   }).then(response => {
     var coordinates = { 
-      X: 123,
-      Y: 456
+      X: "1111",
+      Y: "2222"
     }
-    searchXY(coordinates)
+    getCarpark(coordinates)
   })
 }
 
@@ -702,10 +719,9 @@ Make the API call
 
 `carpark-logic.js`
 
-```javascript, [.highlight: 10]
+```javascript, [.highlight: 9]
 
-function searchLocation(location) {
-  // location -> X and Y
+function getXY(location) {
   axios.get("https://developers.onemap.sg/commonapi/search", {
     params: {
       searchVal: location,
@@ -715,25 +731,25 @@ function searchLocation(location) {
   }).then(response => {
     console.log(response)
     var coordinates = { 
-      X: 123,
-      Y: 456
+      X: "1111",
+      Y: "2222"
     }
-    searchXY(coordinates)
+    getCarpark(coordinates)
   })
 }
 
 ```
-`console.log` the API response
+What is returned by the API?
 
+^ show how developer console is linked to code base (call addCarparkToPage from console)
 ^ Show response object from API in browser
 
 ---
 
 `carpark-logic.js`
 
-```javascript, [.highlight: 11]
-function searchLocation(location) {
-  // location -> X and Y
+```javascript, [.highlight: 10]
+function getXY(location) {
   axios.get("https://developers.onemap.sg/commonapi/search", {
     params: {
       searchVal: location,
@@ -743,7 +759,7 @@ function searchLocation(location) {
   }).then(response => {
     console.log(response)
     var coordinates = response.data.results[0]
-    searchXY(coordinates)
+    getCarpark(coordinates)
   })
 }
 ```
@@ -754,9 +770,8 @@ Extract the coordinates from the `response`
 
 `carpark-logic.js`
 
-```javascript, [.highlight: 11]
-function searchLocation(location) {
-  // location -> X and Y
+```javascript, [.highlight: 10]
+function getXY(location) {
   axios.get("https://developers.onemap.sg/commonapi/search", {
     params: {
       searchVal: location,
@@ -766,7 +781,7 @@ function searchLocation(location) {
   }).then(response => {
     var coordinates = response.data.results[0]
     console.log(coordinates)
-    searchXY(coordinates)
+    getCarpark(coordinates)
   })
 }
 ```
@@ -778,7 +793,7 @@ function searchLocation(location) {
 # What's next
 
 * Now we want to get the nearest carpark to that X and Y value
-* Slightly too complicated for now, so we can use a helper API that I created
+* Slightly too complicated for now, so we can use a library that Joel wrote
 
 ---
 
@@ -797,29 +812,28 @@ function searchLocation(location) {
 <script src="carpark-logic.js"></script>
 ```
 
-Import my helper API
+Add `carpark-helpers.js` to your code
 
 ---
 
 `carpark-logic.js`
 
-```javascript, [.highlight: 3-5]
+```javascript, [.highlight: 2-4]
 function searchXY(coordinates) {
-  // X and Y -> Carpark
   getNearestCarparkTo(coordinates.X, coordinates.Y).then(carpark => {
     addCarparkToPage(carpark.address, carpark.total_lots, carpark.lots_available)
   })
 }
 ```
 
-Use my helper API
+Call the `getNearestCarparkTo(...)` function from Joel's library
 
 ---
 
 # Recap
 
 * Made API call to convert location to X and Y
-* Use helper API to get the nearest carpark
+* Use library function to get the nearest carpark
 
 ---
 
